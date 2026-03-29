@@ -3,7 +3,7 @@
         // Central configuration for all API calls
         // ══════════════════════════════════════════════════════════
 
-        const API_BASE = 'http://localhost:3001/api';
+        const API_BASE = 'https://white-flag-app-frontend-and-backend.onrender.com/api';
 
         // ── Central authenticated fetch helper ─────────────────
         async function api(path, options = {}) {

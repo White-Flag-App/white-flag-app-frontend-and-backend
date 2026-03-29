@@ -48,7 +48,7 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "blob:", "https:"],
-      connectSrc: ["'self'", "https://tenor.googleapis.com", "http://localhost:3001"],
+      connectSrc: ["'self'", "https://tenor.googleapis.com", "https://white-flag-app-frontend-and-backend.onrender.com"],
     }
   }
 }));

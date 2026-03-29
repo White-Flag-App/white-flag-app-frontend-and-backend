@@ -4,11 +4,12 @@
   "description": "WhiteFlag Backend API - Production Ready",
   "main": "src/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node src/index.js",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "dev:api": "nodemon src/index.js",
     "dev:next": "next dev",
-    "init-db": "node src/config/init-database.js"
+    "init-db": "node src/config/init-database.js",
+    "vercel-build": "echo 'Build complete'"
   },
   "keywords": [
     "whiteflag",
