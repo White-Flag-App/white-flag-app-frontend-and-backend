@@ -1,0 +1,105 @@
+﻿        <!-- Chat Room -->
+        <div id="chatroom" class="screen">
+            <div class="chatroom-redesign">
+                <!-- Chat Header - Compact -->
+                <div class="chat-header-compact">
+                    <!-- Room picker modal -->
+                    <div id="chatRoomPicker" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,0.65);" onclick="if(event.target===this)closeChatRoomPicker()">
+                        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:440px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+                            <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                                <span style="font-weight:800;">Switch Chat Room</span>
+                                <button onclick="closeChatRoomPicker()" style="background:none;border:none;color:var(--text-tertiary);font-size:1.2em;cursor:pointer;">&#10005;</button>
+                            </div>
+                            <!-- Topic filter tabs -->
+                            <div id="chatTopicFilter" style="padding:10px 16px 6px;display:flex;gap:6px;flex-wrap:wrap;">
+                                <button class="chat-topic-btn active" onclick="filterChatRoomsByTopic('')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--accent);color:#fff;font-size:0.78em;cursor:pointer;font-weight:600;">All</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('general')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">General</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('solana')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">Solana</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('meme coins')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">Meme Coins</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('news')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">News</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('trends')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">Trends</button>
+                            </div>
+                            <div id="chatRoomList" style="max-height:280px;overflow-y:auto;"></div>
+                            <!-- Create room button -->
+                            <div style="padding:12px 16px;border-top:1px solid var(--border);">
+                                <button onclick="openCreateChatRoomModal()" style="width:100%;padding:10px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;font-size:0.9em;">+ Create New Room</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Create Room Modal -->
+                    <div id="createChatRoomModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background:rgba(0,0,0,0.7);" onclick="if(event.target===this)closeCreateChatRoomModal()">
+                        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:400px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+                            <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                                <span style="font-weight:800;">Create Chat Room</span>
+                                <button onclick="closeCreateChatRoomModal()" style="background:none;border:none;color:var(--text-tertiary);font-size:1.2em;cursor:pointer;">&#10005;</button>
+                            </div>
+                            <div style="padding:16px 20px;">
+                                <div style="margin-bottom:12px;">
+                                    <label style="font-size:0.85em;font-weight:600;display:block;margin-bottom:4px;">Room Name</label>
+                                    <input type="text" id="newChatRoomName" maxlength="100" placeholder="e.g., SOL Trading Tips" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-primary);font-size:0.9em;box-sizing:border-box;" />
+                                </div>
+                                <div style="margin-bottom:12px;">
+                                    <label style="font-size:0.85em;font-weight:600;display:block;margin-bottom:4px;">Description (optional)</label>
+                                    <textarea id="newChatRoomDesc" maxlength="300" rows="2" placeholder="What's this room about?" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-primary);font-size:0.9em;resize:none;box-sizing:border-box;"></textarea>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="font-size:0.85em;font-weight:600;display:block;margin-bottom:4px;">Topic</label>
+                                    <select id="newChatRoomTopic" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-primary);font-size:0.9em;box-sizing:border-box;">
+                                        <option value="general">General</option>
+                                        <option value="solana">Solana</option>
+                                        <option value="meme coins">Meme Coins</option>
+                                        <option value="news">News</option>
+                                        <option value="trends">Trends</option>
+                                        <option value="lore">Lore</option>
+                                        <option value="utility">Utility</option>
+                                    </select>
+                                </div>
+                                <button id="createChatRoomBtn" onclick="createChatRoom()" style="width:100%;padding:12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;font-size:0.95em;">Create Room</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-header-left" onclick="openChatRoomPicker()" style="cursor:pointer;user-select:none;" title="Switch room">
+                        <span class="chat-room-icon">&#128172;</span>
+                        <div class="chat-header-info">
+                            <div class="chat-room-title" id="activeChatRoomName">Select a Room <span style="font-size:0.7em;opacity:0.55;">&#9660;</span></div>
+                            <div class="chat-room-subtitle" id="activeChatRoomDesc">Tap to browse rooms</div>
+                        </div>
+                    </div>
+                    <div class="chat-online-badge">
+                        <span class="online-indicator">🟢</span>
+                        <span class="online-count" id="chatParticipantCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Messages Area -->
+                <div class="chat-messages-area" id="chatMessagesArea">
+                    <div style="text-align:center;color:var(--text-tertiary);padding:40px;">
+                        <div style="font-size:2em;margin-bottom:8px;">💬</div>
+                        <div>Select or create a room to start chatting</div>
+                    </div>
+                </div>
+
+                <!-- Compact Send Box with Reply Preview -->
+                <div class="chat-send-compact">
+                    <div class="chat-reply-active" style="display: none;" id="chatReplyActive">
+                        <div class="reply-active-content">
+                            <div class="reply-active-header">
+                                <span class="reply-active-icon">↩</span>
+                                <span class="reply-active-label">Replying to</span>
+                                <span class="reply-active-username" id="replyActiveUsername"></span>
+                            </div>
+                            <div class="reply-active-text" id="replyActiveText"></div>
+                        </div>
+                        <button class="reply-cancel-btn" onclick="cancelReply()">
+                            <span>✕</span>
+                        </button>
+                    </div>
+
+                    <div class="send-box-wrapper">
+                        <input type="text" id="compactChatInput" class="chat-input-compact" placeholder="💬 Send a message..." onkeydown="if(event.key==='Enter')sendCompactChatMessage()" />
+                        <button class="send-btn-compact" onclick="sendCompactChatMessage()">
+                            <span class="send-icon">📤</span>
+                        </button>
+                    </div>
+                </div>
+            </div>

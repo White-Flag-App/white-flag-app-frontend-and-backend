@@ -1,0 +1,43 @@
+{
+  "name": "whiteflag-backend",
+  "version": "1.0.0",
+  "description": "WhiteFlag Backend API - Production Ready",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node src/index.js",
+    "dev": "nodemon src/index.js",
+    "dev:api": "nodemon src/index.js",
+    "dev:next": "next dev",
+    "init-db": "node src/config/init-database.js"
+  },
+  "keywords": [
+    "whiteflag",
+    "crypto",
+    "social",
+    "solana"
+  ],
+  "author": "WhiteFlag Team",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^5.0.1",
+    "ethers": "^6.13.4",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^2.1.1",
+    "pg": "^8.11.3",
+    "sharp": "^0.34.5",
+    "tweetnacl": "^1.0.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

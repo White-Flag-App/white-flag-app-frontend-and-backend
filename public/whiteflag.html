@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+    <!-- Primary Meta Tags -->
+    <title>WhiteFlag 🏳️ - Multichain Crypto Social Platform</title>
+    <meta name="title" content="WhiteFlag - Multichain Crypto Social Platform">
+    <meta name="description" content="Join WhiteFlag, the premier crypto social platform. Earn rewards, engage with the community, host voice chats, and compete on the leaderboard. Multi-chain support for Bitcoin, Ethereum, Solana & more.">
+    <meta name="keywords" content="crypto social, blockchain, Web3, cryptocurrency, social platform, NFT, DeFi, voice chat, rewards, leaderboard">
+    <meta name="author" content="WhiteFlag">
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#14F195">
+    <meta name="msapplication-TileColor" content="#14F195">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Web App Capabilities -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="WhiteFlag">
+    <meta name="application-name" content="WhiteFlag">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whiteflag.app/">
+    <meta property="og:title" content="WhiteFlag - Multichain Crypto Social Platform">
+    <meta property="og:description" content="Join the premier crypto social platform. Earn rewards, engage with community, host voice chats. Multi-chain support.">
+    <meta property="og:image" content="https://whiteflag.app/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://whiteflag.app/">
+    <meta property="twitter:title" content="WhiteFlag - Multichain Crypto Social">
+    <meta property="twitter:description" content="Join the premier crypto social platform. Earn rewards and engage with the community.">
+    <meta property="twitter:image" content="https://whiteflag.app/twitter-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🏳️</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🏳️</text></svg>">
+
+    <!-- Performance & Security -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Preconnect to optimize font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo+Black&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="whiteflag.css">
+</head>
+<body>
+    <!-- Crypto Price Ticker -->
+    <div class="crypto-ticker">
+        <div class="ticker-track" id="tickerTrack">
+            <div class="ticker-item">
+                <span class="ticker-symbol">BTC</span>
+                <span class="ticker-price" id="btc-price">$43,256.78</span>
+                <span class="ticker-change positive">+2.4%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">ETH</span>
+                <span class="ticker-price" id="eth-price">$2,289.45</span>
+                <span class="ticker-change positive">+1.8%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">BNB</span>
+                <span class="ticker-price" id="bnb-price">$312.67</span>
+                <span class="ticker-change negative">-0.5%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">SOL</span>
+                <span class="ticker-price" id="sol-price">$98.34</span>
+                <span class="ticker-change positive">+3.2%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">XRP</span>
+                <span class="ticker-price" id="xrp-price">$0.5234</span>
+                <span class="ticker-change positive">+1.1%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">ADA</span>
+                <span class="ticker-price" id="ada-price">$0.4567</span>
+                <span class="ticker-change negative">-1.3%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">AVAX</span>
+                <span class="ticker-price" id="avax-price">$34.89</span>
+                <span class="ticker-change positive">+2.7%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">DOGE</span>
+                <span class="ticker-price" id="doge-price">$0.0789</span>
+                <span class="ticker-change positive">+4.5%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">DOT</span>
+                <span class="ticker-price" id="dot-price">$6.78</span>
+                <span class="ticker-change negative">-0.8%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">LINK</span>
+                <span class="ticker-price" id="link-price">$14.23</span>
+                <span class="ticker-change positive">+1.9%</span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="ticker-item">
+                <span class="ticker-symbol">BTC</span>
+                <span class="ticker-price">$43,256.78</span>
+                <span class="ticker-change positive">+2.4%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">ETH</span>
+                <span class="ticker-price">$2,289.45</span>
+                <span class="ticker-change positive">+1.8%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">BNB</span>
+                <span class="ticker-price">$312.67</span>
+                <span class="ticker-change negative">-0.5%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">SOL</span>
+                <span class="ticker-price">$98.34</span>
+                <span class="ticker-change positive">+3.2%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">XRP</span>
+                <span class="ticker-price">$0.5234</span>
+                <span class="ticker-change positive">+1.1%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">ADA</span>
+                <span class="ticker-price">$0.4567</span>
+                <span class="ticker-change negative">-1.3%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">AVAX</span>
+                <span class="ticker-price">$34.89</span>
+                <span class="ticker-change positive">+2.7%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">DOGE</span>
+                <span class="ticker-price">$0.0789</span>
+                <span class="ticker-change positive">+4.5%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">DOT</span>
+                <span class="ticker-price">$6.78</span>
+                <span class="ticker-change negative">-0.8%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">LINK</span>
+                <span class="ticker-price">$14.23</span>
+                <span class="ticker-change positive">+1.9%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-container">
+        <!-- Top Header with Logo and Wallet -->
+        <div class="top-header">
+            <div class="logo">
+                <span class="logo-icon">🏳️</span>
+                <span>WhiteFlag</span>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeText">Dark</span>
+                </button>
+                <button class="header-icon-btn" onclick="showNotifications()" title="Notifications">
+                    <span class="icon-badge" id="notifBadge" style="display:none;">0</span>
+                    🔔
+                </button>
+                <button class="header-icon-btn" onclick="switchScreen('messages')" title="Messages">
+                    <span class="icon-badge">2</span>
+                    💬
+                </button>
+
+                <!-- Wallet Connection Button (Dynamic) -->
+                <button class="connect-wallet-btn" id="headerWalletBtn" onclick="handleWalletConnection()">
+                    <span id="walletBtnText">Connect Wallet</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Screen Navigation -->
+        <div class="screen-switcher">
+            <button class="screen-btn active" onclick="switchScreen('feed')">Feed</button>
+            <button class="screen-btn" onclick="switchScreen('following')">Following</button>
+            <button class="screen-btn" onclick="switchScreen('profile')">Profile</button>
+            <button class="screen-btn" onclick="switchScreen('bookmarks')">Bookmarks</button>
+            <button class="screen-btn" onclick="switchScreen('chatroom')">Chat Room</button>
+            <button class="screen-btn" onclick="switchScreen('voicecall')">Voice Chat</button>
+            <button class="screen-btn" onclick="switchScreen('verification')">Get Verified</button>
+            <button class="screen-btn" onclick="switchScreen('leaderboard')">Leaderboard</button>
+        </div>
+
+        <!-- Feed Screen -->
+        <div id="feed" class="screen active">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="feedSearch" placeholder="Search users, posts, topics..." oninput="performSearch('feedSearch', 'feedSearchResults')">
+                    <button class="search-clear-btn" id="feedSearchClearBtn" onclick="clearSearch('feedSearch', 'feedSearchResults', 'feedSearchClearBtn')" style="display:none;">✕</button>
+                </div>
+                <div class="search-results" id="feedSearchResults" style="display:none;"></div>
+            </div>
+
+            <div class="feed-container">
+                <div class="create-post">
+                    <div class="topic-selector">
+                        <button class="topic-pick-btn" onclick="toggleTopicDropdown()">
+                            <span class="topic-pick-icon">🪙</span>
+                            <span id="selectedTopicLabel">Select Topic</span>
+                            <span class="topic-pick-arrow">▾</span>
+                        </button>
+                        <div class="topic-dropdown" id="topicDropdown">
+                            <div class="topic-search-wrap">
+                                <input type="text" class="topic-search" id="topicSearchInput" placeholder="Search crypto..." oninput="filterTopics()" autocomplete="off">
+                            </div>
+                            <div class="topic-list" id="topicList"></div>
+                        </div>
+                        <span id="chosenTopicTag" class="post-topic-tag" style="display:none;">
+                            <span class="post-topic-text"></span>
+                            <span class="topic-clear" onclick="clearTopic()">✕</span>
+                        </span>
+                    </div>
+                    <input type="text" class="post-title-input" id="postTitleInput" placeholder="Title (optional)">
+                    <textarea class="post-textarea" id="postTextarea" placeholder="Engage and earn rewards on Solana..."></textarea>
+                    <input type="url" class="post-link-input" id="postLinkInput" placeholder="🔗 Add link (optional)">
+                    <div class="post-actions">
+                        <div class="media-upload-section">
+                            <button class="media-btn" onclick="uploadImage()">
+                                <span class="media-icon">📷</span> Photo
+                            </button>
+                            <button class="media-btn" onclick="uploadVideo()">
+                                <span class="media-icon">🎥</span> Video
+                            </button>
+                            <button class="media-btn" onclick="openGifPicker('post')" id="postGifBtn">
+                                <span class="media-icon">🎞️</span> GIF
+                            </button>
+                            <span class="post-hint">◎ Engage and earn rewards on Solana</span>
+                        </div>
+                        <button class="post-btn" onclick="createPost()">Post</button>
+                    </div>
+                    <div id="mediaPreview" class="media-preview"></div>
+                </div>
+
+                <!-- Sort Buttons for Feed -->
+                <div class="posts-sort-header">
+                    <h3 class="posts-section-title">📰 Feed Posts</h3>
+                    <div class="posts-sort-buttons">
+                        <button class="post-sort-btn active" onclick="sortPosts('feed', 'recent')">
+                            <span class="sort-icon">🕐</span>
+                            <span>Recent</span>
+                        </button>
+                        <button class="post-sort-btn" onclick="sortPosts('feed', 'liked')">
+                            <span class="sort-icon">❤️</span>
+                            <span>Most Liked</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feed Posts - REDESIGNED TO MATCH PROFILE -->
+                <div class="profile-posts-grid" id="feedPostsGrid">
+                    <div class="profile-post-card post-expanded">
+                        <div class="profile-post-border-accent"></div>
+                        <div class="profile-post-content">
+                            <div class="profile-post-header">
+                                <span class="profile-post-topic bitcoin">🪙 Bitcoin (BTC)</span>
+                                <span class="profile-post-time">3 hours ago</span>
+                            </div>
+                            <div class="profile-post-title">Hit My First 100 Hours This Month! 🎯</div>
+                            <div class="profile-post-text">
+                                Just hit my first 100 hours this month! The competition is intense but that's what makes it exciting. Every minute counts toward the prize pool. LFG! 🚀
+                            </div>
+
+                            <!-- Post Action Bar -->
+                            <div class="post-action-bar">
+                                <button class="post-action-btn vote-up active" onclick="toggleUpvote(this)">▲ 142</button>
+                                <button class="post-action-btn comment-btn" onclick="toggleComments('feedPost1')">💬 24</button>
+                                <button class="post-action-btn">🔁 8</button>
+                                <button class="post-action-btn" onclick="toggleBookmark(this)" title="Bookmark post" data-post-id="">🔖</button>
+                                <button class="post-action-btn" onclick="copyPostLink(this)" title="Copy link">🔗</button>
+                            </div>
+
+                            <!-- Comments Section (dynamically rendered) -->
+                            <div class="post-comments-section" id="feedPost1" data-post-id="feedPost1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Following Screen -->
+        <div id="following" class="screen">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="followingSearch" placeholder="Search users, posts, topics..." oninput="performSearch('followingSearch', 'followingSearchResults')">
+                    <button class="search-clear-btn" id="followingSearchClearBtn" onclick="clearSearch('followingSearch', 'followingSearchResults', 'followingSearchClearBtn')" style="display:none;">✕</button>
+                </div>
+                <div class="search-results" id="followingSearchResults" style="display:none;"></div>
+            </div>
+
+            <div class="feed-container">
+                <div class="following-header-section">
+                    <h2 class="following-title">📰 Following Feed</h2>
+                    <div class="posts-sort-buttons">
+                        <button class="post-sort-btn active" onclick="sortPosts('following', 'recent')">
+                            <span class="sort-icon">🕐</span>
+                            <span>Recent</span>
+                        </button>
+                        <button class="post-sort-btn" onclick="sortPosts('following', 'liked')">
+                            <span class="sort-icon">❤️</span>
+                            <span>Most Liked</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Following Posts - REDESIGNED TO MATCH PROFILE -->
+                <div class="profile-posts-grid" id="followingPostsGrid">
+                    <div class="profile-post-card">
+                        <div class="profile-post-border-accent"></div>
+                        <div class="profile-post-content">
+                            <div class="profile-post-header">
+                                <span class="profile-post-topic solana">🪙 Solana (SOL)</span>
+                                <span class="profile-post-time">5 hours ago</span>
+                            </div>
+                            <div class="profile-post-title">Quality Over Quantity: My Strategy for Success</div>
+                            <div class="profile-post-text">
+                                Pro tip for newcomers: Focus on quality engagement, not just time. The community here is awesome and the monthly payouts are legit. Just verified my wallet this morning! 💎
+                            </div>
+                            <div class="profile-post-stats">
+                                <div class="profile-post-votes">
+                                    <span class="vote-indicator positive">▲ +89</span>
+                                </div>
+                                <span class="profile-post-stat">💬 15</span>
+                                <span class="profile-post-stat">🔁 6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-post-card">
+                        <div class="profile-post-border-accent"></div>
+                        <div class="profile-post-content">
+                            <div class="profile-post-header">
+                                <span class="profile-post-topic ethereum">🪙 Ethereum (ETH)</span>
+                                <span class="profile-post-time">8 hours ago</span>
+                            </div>
+                            <div class="profile-post-title">Climbed to #3 on the Leaderboard! 💪</div>
+                            <div class="profile-post-text">
+                                Finally climbed to #3 on the leaderboard! The grind is real but so worth it. Can't wait to see what the prize pool hits by end of month 🎯
+                            </div>
+                            <div class="profile-post-stats">
+                                <div class="profile-post-votes">
+                                    <span class="vote-indicator positive">▲ +156</span>
+                                </div>
+                                <span class="profile-post-stat">💬 31</span>
+                                <span class="profile-post-stat">🔁 12</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-post-card">
+                        <div class="profile-post-border-accent"></div>
+                        <div class="profile-post-content">
+                            <div class="profile-post-header">
+                                <span class="profile-post-topic bitcoin">🪙 Bitcoin (BTC)</span>
+                                <span class="profile-post-time">3 hours ago</span>
+                            </div>
+                            <div class="profile-post-title">Hit My First 100 Hours This Month! 🎯</div>
+                            <div class="profile-post-text">
+                                Just hit my first 100 hours this month! The competition is intense but that's what makes it exciting. Every minute counts toward the prize pool. LFG! 🚀
+                            </div>
+                            <div class="profile-post-stats">
+                                <div class="profile-post-votes">
+                                    <span class="vote-indicator positive">▲ +142</span>
+                                </div>
+                                <span class="profile-post-stat">💬 24</span>
+                                <span class="profile-post-stat">🔁 8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Screen -->
+        <!-- Profile Screen -->
+        <div id="profile" class="screen">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="profileSearch" placeholder="Search users, posts, topics..." oninput="performSearch('profileSearch', 'profileSearchResults')">
+                    <button class="search-clear-btn" id="profileSearchClearBtn" onclick="clearSearch('profileSearch', 'profileSearchResults', 'profileSearchClearBtn')" style="display:none;">✕</button>
+                </div>
+                <div class="search-results" id="profileSearchResults" style="display:none;"></div>
+            </div>
+
+            <div class="profile-container">
+
+                <!-- ── DISPLAY VIEW - COMPACT REDESIGN ── -->
+                <div id="profileDisplay">
+                    <!-- Profile Card - Compact Design -->
+                    <div class="profile-compact-card">
+                        <div class="profile-card-accent"></div>
+
+                        <!-- Header Row -->
+                        <div class="profile-compact-header">
+                            <div class="profile-left-section">
+                                <div class="profile-avatar-compact" id="profileAvatarCompact">?</div>
+                                <div class="profile-name-section">
+                                    <div class="profile-username-row">
+                                        <span class="profile-username-text" id="profileUsernameText">—</span>
+                                        <span class="verified-badge-compact" id="profileVerifiedBadge" style="display:none;">✓</span>
+                                    </div>
+                                    <div class="profile-rank-badge" id="profileRankBadge" style="display:none;"></div>
+                                </div>
+                            </div>
+                            <button class="follow-btn-compact" id="profileFollowBtn" onclick="toggleFollow()" style="display:none;">+ Follow</button>
+                        </div>
+
+                        <!-- Stats Row - Compact -->
+                        <div class="profile-stats-compact">
+                            <div class="stat-compact" onclick="showFollowersList()">
+                                <div class="stat-compact-value" id="profileFollowersCount">—</div>
+                                <div class="stat-compact-label">Followers</div>
+                            </div>
+                            <div class="stat-divider-compact"></div>
+                            <div class="stat-compact" onclick="showFollowingList()">
+                                <div class="stat-compact-value" id="profileFollowingCount">—</div>
+                                <div class="stat-compact-label">Following</div>
+                            </div>
+                            <div class="stat-divider-compact"></div>
+                            <div class="stat-compact">
+                                <div class="stat-compact-value" id="profilePostsCount">—</div>
+                                <div class="stat-compact-label">Posts</div>
+                            </div>
+                        </div>
+
+                        <!-- Bio - Compact -->
+                        <div class="profile-bio-compact" id="profileBioCompact"></div>
+
+                        <!-- Meta Info - Compact -->
+                        <div class="profile-meta-compact" id="profileMetaCompact" style="display:none;">
+                            <span class="meta-item" id="profileJoinDate"></span>
+                        </div>
+
+                        <!-- Action Buttons Row -->
+                        <div class="profile-actions-row">
+                            <button class="action-btn-compact" onclick="toggleProfileView('settings')">
+                                <span>⚙️</span> Settings
+                            </button>
+                        </div>
+
+                        <!-- Wallet Address -->
+                        <div class="profile-wallet-row" id="profileWalletRow">
+                            <span class="wallet-row-icon">◎</span>
+                            <span class="wallet-row-address" id="profileWalletAddress">Not connected — connect wallet to show address</span>
+                            <button class="wallet-row-copy" onclick="copyWalletAddress()" title="Copy address" id="profileWalletCopyBtn" style="display:none;">⧉</button>
+                        </div>
+                    </div>
+
+                    <div class="earnings-compact-card">
+                        <div class="earnings-compact-accent"></div>
+                        <div class="earnings-compact-content">
+                            <div class="earnings-compact-header">
+                                <div class="earnings-info-group">
+                                    <span class="earnings-label-compact">💰 Creator Earnings</span>
+                                    <span class="earnings-amount-compact">$247.50</span>
+                                </div>
+                                <button class="claim-btn-compact" onclick="claimCreatorEarnings()">
+                                    💵 Claim
+                                </button>
+                            </div>
+
+                            <div class="earnings-stats-compact">
+                                <div class="earning-stat-mini">
+                                    <span class="stat-mini-icon">⏱️</span>
+                                    <span class="stat-mini-value">89h</span>
+                                </div>
+                                <div class="earning-stat-mini">
+                                    <span class="stat-mini-icon">📝</span>
+                                    <span class="stat-mini-value">247</span>
+                                </div>
+                                <div class="earning-stat-mini">
+                                    <span class="stat-mini-icon">💬</span>
+                                    <span class="stat-mini-value">892</span>
+                                </div>
+                                <div class="earning-stat-mini">
+                                    <span class="stat-mini-icon">👍</span>
+                                    <span class="stat-mini-value">2.3k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-posts-section">
+                        <!-- Pinned Post Section -->
+                        <div class="pinned-post-section" id="pinnedPostSection" style="display: none;">
+                            <h3 class="section-title">📌 Pinned Post</h3>
+                            <div class="feed-container" id="pinnedPostContainer">
+                                <!-- Pinned post will appear here -->
+                            </div>
+                        </div>
+
+                        <!-- Recent Posts Section - REDESIGNED -->
+                        <div class="recent-posts-container">
+                            <div class="recent-posts-header">
+                                <h3 class="recent-posts-title">📝 Recent Posts</h3>
+                                <div class="posts-sort-buttons">
+                                    <button class="post-sort-btn active" onclick="sortPosts('profile', 'recent')">
+                                        <span class="sort-icon">🕐</span>
+                                        <span>Recent</span>
+                                    </button>
+                                    <button class="post-sort-btn" onclick="sortPosts('profile', 'liked')">
+                                        <span class="sort-icon">❤️</span>
+                                        <span>Most Liked</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="profile-posts-grid" id="profilePostsGrid">
+                                <div class="profile-post-card">
+                                    <div class="profile-post-border-accent"></div>
+                                    <div class="profile-post-content">
+                                        <div class="profile-post-header">
+                                            <span class="profile-post-topic">🪙 Solana (SOL)</span>
+                                            <span class="profile-post-time">2 hours ago</span>
+                                        </div>
+                                        <div class="profile-post-title">Voice Chat Recommendation: DeFi Discussion</div>
+                                        <div class="profile-post-text">
+                                            Finally broke into top 20! The competition is heating up but I'm loving every minute. This platform really rewards dedication. 🎯
+                                        </div>
+                                        <div class="profile-post-stats">
+                                            <div class="profile-post-votes">
+                                                <span class="vote-indicator positive">▲ +67</span>
+                                            </div>
+                                            <span class="profile-post-stat">💬 12</span>
+                                            <span class="profile-post-stat">🔁 5</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-post-card">
+                                    <div class="profile-post-border-accent"></div>
+                                    <div class="profile-post-content">
+                                        <div class="profile-post-header">
+                                            <span class="profile-post-topic bitcoin">🪙 Bitcoin (BTC)</span>
+                                            <span class="profile-post-time">1 day ago</span>
+                                        </div>
+                                        <div class="profile-post-text">
+                                            Been grinding all week. The key is consistency — showing up every single day makes a huge difference in the rankings. Who else is feeling the grind? 💪
+                                        </div>
+                                        <div class="profile-post-stats">
+                                            <div class="profile-post-votes">
+                                                <span class="vote-indicator positive">▲ +43</span>
+                                            </div>
+                                            <span class="profile-post-stat">💬 8</span>
+                                            <span class="profile-post-stat">🔁 3</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-post-card">
+                                    <div class="profile-post-border-accent"></div>
+                                    <div class="profile-post-content">
+                                        <div class="profile-post-header">
+                                            <span class="profile-post-topic ethereum">🪙 Ethereum (ETH)</span>
+                                            <span class="profile-post-time">3 days ago</span>
+                                        </div>
+                                        <div class="profile-post-text">
+                                            Loading recent activity...
+                                        </div>
+                                        <div class="profile-post-stats">
+                                            <div class="profile-post-votes">
+                                                <span class="vote-indicator positive">▲ +91</span>
+                                            </div>
+                                            <span class="profile-post-stat">💬 19</span>
+                                            <span class="profile-post-stat">🔁 12</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── SETTINGS VIEW ── -->
+                <div id="profileSettings" style="display:none;">
+                    <div class="profile-settings">
+                        <div class="settings-header">
+                            <div class="settings-header-left">
+                                <h2 class="settings-title">Profile Settings</h2>
+                                <div class="privacy-lock-toggle" onclick="togglePrivacyLock()" id="privacyLockToggle">
+                                    <span class="lock-icon">🔓</span>
+                                    <span class="lock-label">Public Account</span>
+                                </div>
+                            </div>
+                            <button class="back-btn" onclick="toggleProfileView('display')">← Back to Profile</button>
+                        </div>
+
+                        <div class="settings-avatar-row">
+                            <div class="profile-avatar settings-avatar" id="settingsAvatar" onclick="uploadProfilePicture()">J</div>
+                            <div class="settings-avatar-info">
+                                <span class="settings-avatar-label">Profile Picture</span>
+                                <span class="settings-avatar-hint">Click avatar to upload</span>
+                            </div>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-input" id="username" value="" placeholder="Enter your username">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Display Name</label>
+                                <input type="text" class="form-input" id="displayName" value="" placeholder="Enter your display name">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Bio</label>
+                                <textarea class="form-textarea" id="bio" placeholder="Tell us about yourself..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-input" id="location" value="" placeholder="City, Country">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Website</label>
+                                <input type="text" class="form-input" id="website" value="" placeholder="https://yourwebsite.com">
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="save-profile-btn" onclick="saveProfile()">Save Changes</button>
+                                <button class="cancel-btn" onclick="cancelEdit()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Voice Chat -->
+        <div id="voicecall" class="screen">
+            <div class="voice-container">
+                <!-- Start Voice Chat Section -->
+                <div class="start-voice-section">
+                    <button class="start-voice-btn" onclick="switchScreen('createvoice')">
+                        <span class="start-voice-icon">🎙️</span>
+                        <div class="start-voice-text">
+                            <div class="start-voice-title">Create a Voice Chat</div>
+                            <div class="start-voice-subtitle">Set up your own voice room with custom settings</div>
+                        </div>
+                        <span class="start-voice-arrow">→</span>
+                    </button>
+                </div>
+
+                <!-- Active Voice Chat Header -->
+                <div class="voice-header" id="voiceRoomHeader" style="display:none;">
+                    <div class="space-info">
+                        <div class="space-title" id="voiceRoomHeaderTitle">🎙️ Loading...</div>
+                        <div class="space-host">Hosted by <span class="host-name username-link" id="voiceRoomHostName"></span></div>
+                    </div>
+                    <div class="space-stats">
+                        <div class="listener-count" id="voiceRoomListenerCount">🟢 LIVE • 0 listening</div>
+                    </div>
+                </div>
+
+                <div class="voice-stage" id="voiceStageContainer">
+                    <div style="text-align:center;color:var(--text-tertiary);padding:40px;">
+                        <div style="font-size:2em;margin-bottom:8px;">🎙️</div>
+                        <div>No active voice rooms — create one above!</div>
+                    </div>
+                </div>
+
+                <div class="voice-controls">
+                    <button class="voice-control-btn join-btn" onclick="toggleMic()">
+                        <span class="control-icon">🎤</span>
+                        <span class="control-label">Request to Speak</span>
+                    </button>
+                    <button class="voice-control-btn leave-btn" onclick="leaveChat()">
+                        <span class="control-icon">🚪</span>
+                        <span class="control-label">Leave Chat</span>
+                    </button>
+                </div>
+
+                <div class="active-spaces-list">
+                    <h3 class="section-title">Other Active Voice Chats</h3>
+                    <div class="space-list">
+                        <div class="space-item">
+                            <div class="space-item-info">
+                                <div class="space-item-title">💰 Trading Strategies & Tips</div>
+                                <div class="space-item-host">Hosted by TokenMaster • 23 listening</div>
+                            </div>
+                            <button class="join-space-btn" onclick="joinVoiceChat(0)">Join</button>
+                        </div>
+
+                        <div class="space-item">
+                            <div class="space-item-info">
+                                <div class="space-item-title">🎮 GameFi Discussion</div>
+                                <div class="space-item-host">Hosted by Web3Gamer • 15 listening</div>
+                            </div>
+                            <button class="join-space-btn" onclick="joinVoiceChat(0)">Join</button>
+                        </div>
+
+                        <div class="space-item">
+                            <div class="space-item-info">
+                                <div class="space-item-title">📊 Market Analysis Live</div>
+                                <div class="space-item-host">Hosted by ChartPro • 31 listening</div>
+                            </div>
+                            <button class="join-space-btn" onclick="joinVoiceChat(0)">Join</button>
+                        </div>
+                    </div>
+
+                    <button class="create-space-btn" onclick="createVoiceChat()">
+                        <span style="font-size: 1.2em;">🎙️</span> Create New Voice Chat
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verification Flow -->
+        <div id="verification" class="screen">
+            <div class="verification-container">
+                <!-- Hero Section -->
+                <div class="verification-hero">
+                    <div class="verification-badge-icon">
+                        <div class="badge-glow"></div>
+                        <span class="badge-emoji">✓</span>
+                    </div>
+                    <h1 class="verification-hero-title">Get Verified</h1>
+                    <p class="verification-hero-subtitle">Unlock full platform access and rewards eligibility</p>
+                </div>
+
+                <!-- Main Card -->
+                <div class="verification-card">
+                    <!-- Benefits Grid -->
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">⚡</div>
+                            <div class="benefit-title">Instant Verification</div>
+                            <div class="benefit-desc">Get verified in seconds</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🏆</div>
+                            <div class="benefit-title">Rewards Eligible</div>
+                            <div class="benefit-desc">Earn from monthly pool</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🔓</div>
+                            <div class="benefit-title">Full Access</div>
+                            <div class="benefit-desc">All platform features</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🛡️</div>
+                            <div class="benefit-title">Secure Payment</div>
+                            <div class="benefit-desc">Crypto-powered safety</div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Section -->
+                    <div class="verification-pricing">
+                        <div class="pricing-header">
+                            <div class="pricing-label">One-Time Fee</div>
+                            <div class="pricing-amount">
+                                <span class="price-currency">$</span>
+                                <span class="price-value">5</span>
+                                <span class="price-period">.00 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="fee-breakdown">
+                            <div class="fee-item">
+                                <div class="fee-icon">💰</div>
+                                <div class="fee-details">
+                                    <div class="fee-label">Platform Revenue</div>
+                                    <div class="fee-sublabel">Platform operations & development</div>
+                                </div>
+                                <div class="fee-value">$2.50</div>
+                            </div>
+                            <div class="fee-divider"></div>
+                            <div class="fee-item">
+                                <div class="fee-icon">🎁</div>
+                                <div class="fee-details">
+                                    <div class="fee-label">Rewards Pool</div>
+                                    <div class="fee-sublabel">Goes to monthly leaderboard winners</div>
+                                </div>
+                                <div class="fee-value">$2.50</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <button class="verify-btn" onclick="handleVerification()">
+                        <span class="btn-icon">🔐</span>
+                        <span class="btn-text">Connect Wallet & Verify</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+
+                    <!-- Trust Indicators -->
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <span class="trust-icon">🔒</span>
+                            <span class="trust-text">Secure</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">⚡</span>
+                            <span class="trust-text">Instant</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">🌐</span>
+                            <span class="trust-text">Multi-Chain</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Verify Section -->
+                <div class="why-verify-section">
+                    <h2 class="why-verify-title">Why Get Verified?</h2>
+                    <div class="why-verify-grid">
+                        <div class="why-item">
+                            <div class="why-number">01</div>
+                            <div class="why-content">
+                                <h3>Earn Real Money</h3>
+                                <p>Compete for your share of the monthly rewards pool distributed to top contributors</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-number">02</div>
+                            <div class="why-content">
+                                <h3>Unlock All Features</h3>
+                                <p>Access voice chats, advanced posting, and exclusive community features</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-number">03</div>
+                            <div class="why-content">
+                                <h3>Build Your Reputation</h3>
+                                <p>Stand out with your verified badge and gain trust in the community</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-number">04</div>
+                            <div class="why-content">
+                                <h3>Support the Platform</h3>
+                                <p>Your fee helps maintain and grow the platform while funding community rewards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Referral System -->
+                <div class="referral-section">
+                    <div class="referral-header">
+                        <div class="referral-icon">🎁</div>
+                        <h2 class="referral-title">Earn $1 Per Referral</h2>
+                        <p class="referral-subtitle">Share WhiteFlag and earn rewards for every verified signup</p>
+                    </div>
+
+                    <div class="referral-card">
+                        <!-- Earnings Display -->
+                        <div class="referral-earnings">
+                            <div class="earnings-label">Total Referral Earnings</div>
+                            <div class="earnings-amount">$24.00</div>
+                            <div class="earnings-breakdown">24 verified referrals × $1.00 each</div>
+                            <button class="claim-earnings-btn" onclick="claimReferralEarnings()">
+                                <span class="claim-icon">💰</span>
+                                <span>Claim Earnings</span>
+                            </button>
+                        </div>
+
+                        <!-- Referral Link -->
+                        <div class="referral-link-section">
+                            <label class="referral-label">Your Referral Link</label>
+                            <div class="referral-link-container">
+                                <input type="text" class="referral-link-input" value="https://whiteflag.app/ref/..." id="referralLinkInput" readonly>
+                                <button class="copy-link-btn" onclick="copyReferralLink()">
+                                    <span id="copyIcon">📋</span>
+                                    <span id="copyText">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Share Buttons -->
+                        <div class="referral-share-section">
+                            <div class="share-label">Share on Social Media</div>
+                            <div class="share-buttons">
+                                <button class="share-btn twitter" onclick="shareOnTwitter()">
+                                    <span class="share-icon">🐦</span>
+                                    <span>Twitter</span>
+                                </button>
+                                <button class="share-btn telegram" onclick="shareOnTelegram()">
+                                    <span class="share-icon">✈️</span>
+                                    <span>Telegram</span>
+                                </button>
+                                <button class="share-btn discord" onclick="shareOnDiscord()">
+                                    <span class="share-icon">💬</span>
+                                    <span>Discord</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- How It Works -->
+                        <div class="referral-how-it-works">
+                            <h3 class="how-it-works-title">How It Works</h3>
+                            <div class="referral-steps">
+                                <div class="referral-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Share Your Link</div>
+                                        <div class="step-desc">Send your unique referral link to friends</div>
+                                    </div>
+                                </div>
+                                <div class="referral-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">They Sign Up</div>
+                                        <div class="step-desc">New users create account via your link</div>
+                                    </div>
+                                </div>
+                                <div class="referral-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">They Get Verified</div>
+                                        <div class="step-desc">They pay $5 verification fee</div>
+                                    </div>
+                                </div>
+                                <div class="referral-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">You Earn $1</div>
+                                        <div class="step-desc">Get $1 credited to your account instantly</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Referral Stats -->
+                        <div class="referral-stats-grid">
+                            <div class="ref-stat-item">
+                                <div class="ref-stat-value">24</div>
+                                <div class="ref-stat-label">Total Referrals</div>
+                            </div>
+                            <div class="ref-stat-item">
+                                <div class="ref-stat-value">18</div>
+                                <div class="ref-stat-label">This Month</div>
+                            </div>
+                            <div class="ref-stat-item">
+                                <div class="ref-stat-value">$24</div>
+                                <div class="ref-stat-label">Total Earned</div>
+                            </div>
+                            <div class="ref-stat-item">
+                                <div class="ref-stat-value">$18</div>
+                                <div class="ref-stat-label">This Month</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages" class="screen">
+            <div class="messages-fullscreen-container">
+
+                <!-- Search Section - Always at Top -->
+                <div class="messages-search-section">
+                    <h1 class="messages-main-title">💬 Messages</h1>
+
+                    <!-- Clickable Search Bar -->
+                    <div class="messages-search-clickable" onclick="focusMessageSearch()">
+                        <div class="search-header-row">
+                            <div class="search-icon-large">🔍</div>
+                            <div class="search-text-area">
+                                <div class="search-main-text">Search for someone to message</div>
+                                <div class="search-sub-text">Find users by username</div>
+                            </div>
+                            <div class="search-action-icon">→</div>
+                        </div>
+                    </div>
+
+                    <!-- Actual Search Input (Shown when clicked) -->
+                    <div class="messages-search-input-area" id="messageSearchInputArea" style="display: none;">
+                        <div class="search-input-header">
+                            <span class="search-input-title">✉️ Start a New Conversation</span>
+                            <button class="close-search-input-btn" onclick="closeMessageSearch()">✕</button>
+                        </div>
+                        <div class="search-input-box">
+                            <span class="search-icon-small">🔍</span>
+                            <input type="text" class="message-search-field" id="messageSearchField" placeholder="Type username to search..." oninput="searchUsersInMessages(this.value)" autofocus>
+                        </div>
+
+                        <!-- Live Search Results -->
+                        <div class="search-live-results" id="searchLiveResults">
+                            <div class="search-hint">Try searching: "crypto", "alpha", "defi", "moon"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages List Section -->
+                <div class="messages-list-section" id="messagesListSection">
+                    <div class="messages-list-header">
+                        <h2 class="list-section-title">Recent Conversations</h2>
+                        <span class="conversation-count">5 active</span>
+                    </div>
+
+                    <div class="message-threads-fullscreen" id="messageThreadsList">
+                        <div class="threads-loading" style="text-align:center;color:var(--text-tertiary);padding:40px;"><div style="font-size:2em;margin-bottom:8px;">💬</div><div>Loading conversations...</div></div>                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="messages-empty-fullscreen" style="display: none;">
+                    <div class="empty-icon-large">💬</div>
+                    <div class="empty-title-large">No Messages Yet</div>
+                    <div class="empty-desc-large">Click the search button above to find someone to message</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Conversation (NEW) -->
+        <div id="conversation" class="screen">
+            <div class="conversation-container">
+                <div class="conversation-header">
+                    <button class="back-btn" onclick="switchScreen('messages')">← Back</button>
+                    <div class="conversation-user-info">
+                        <div class="conversation-avatar" id="convAvatar">A</div>
+                        <div class="conversation-user-details">
+                            <div class="conversation-username" id="convUsername"></div>
+                            <div class="conversation-status">Active now</div>
+                        </div>
+                    </div>
+                    <button class="conversation-options-btn" onclick="showToast('Conversation options coming soon')">⋮</button>
+                </div>
+
+                <div class="conversation-messages" id="conversationMessages">
+                    <!-- Messages will be loaded here -->
+                    <div class="message-bubble received">
+                        <div class="message-content">Hey! Want to join the voice chat?</div>
+                        <div class="message-time">2:30 PM</div>
+                    </div>
+
+                    <div class="message-bubble sent">
+                        <div class="message-content">Sure! Give me 5 minutes</div>
+                        <div class="message-time">2:31 PM</div>
+                    </div>
+
+                    <div class="message-bubble received">
+                        <div class="message-content">Sounds good! I’ll be waiting in the Bitcoin room</div>
+                        <div class="message-time">2:32 PM</div>
+                    </div>
+                </div>
+
+                <div class="conversation-input-container">
+                    <textarea class="conversation-input" id="messageInput" placeholder="Type a message..." rows="1"></textarea>
+                    <button class="send-message-btn" onclick="sendDirectMessage()">
+                        <span>📤</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings (NEW) -->
+        <div id="settings" class="screen">
+            <div class="settings-container">
+                <div class="settings-header">
+                    <h1 class="settings-title">⚙️ Settings</h1>
+                </div>
+
+                <div class="settings-content">
+                    <!-- Account Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Account</div>
+                        <div class="settings-item" onclick="switchScreen('profile'); toggleProfileView('settings')">
+                            <div class="settings-item-icon">👤</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Edit Profile</div>
+                                <div class="settings-item-desc">Update your name, bio, and avatar</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+
+                        <div class="settings-item" onclick="disconnectWallet()">
+                            <div class="settings-item-icon">🔌</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Disconnect Wallet</div>
+                                <div class="settings-item-desc">Log out of your account</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Privacy & Safety</div>
+                        <div class="settings-item" onclick="showToast('Privacy settings coming soon')">
+                            <div class="settings-item-icon">🔒</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Privacy Settings</div>
+                                <div class="settings-item-desc">Control who can see your content</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+
+                        <div class="settings-item" onclick="switchScreen('profile'); document.getElementById('blockedUsersBtn').click();">
+                            <div class="settings-item-icon">🚫</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Blocked Users</div>
+                                <div class="settings-item-desc">Manage blocked accounts</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Notifications</div>
+                        <div class="settings-item">
+                            <div class="settings-item-icon">🔔</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Push Notifications</div>
+                                <div class="settings-item-desc">Get notified about new activity</div>
+                            </div>
+                            <label class="settings-toggle">
+                                <input type="checkbox" checked onchange="showToast('Notification preference saved')">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="settings-item">
+                            <div class="settings-item-icon">📧</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Email Notifications</div>
+                                <div class="settings-item-desc">Receive updates via email</div>
+                            </div>
+                            <label class="settings-toggle">
+                                <input type="checkbox" onchange="showToast('Email preference saved')">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preferences Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Preferences</div>
+                        <div class="settings-item" onclick="toggleTheme()">
+                            <div class="settings-item-icon">🌙</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Dark Mode</div>
+                                <div class="settings-item-desc">Toggle dark/light theme</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <!-- Data Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Data & Storage</div>
+                        <div class="settings-item" onclick="switchScreen('profile'); alert('Transaction history: View all your earnings and claims');">
+                            <div class="settings-item-icon">💰</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Transaction History</div>
+                                <div class="settings-item-desc">View all transactions</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+
+                        <div class="settings-item" onclick="showToast('Data export coming soon')">
+                            <div class="settings-item-icon">📦</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Export Data</div>
+                                <div class="settings-item-desc">Download your data</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <!-- About Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">About</div>
+                        <div class="settings-item" onclick="alert('WhiteFlag v1.0.0\n\nA Solana-powered social platform for crypto enthusiasts.\n\n© 2026 WhiteFlag')">
+                            <div class="settings-item-icon">ℹ️</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">About WhiteFlag</div>
+                                <div class="settings-item-desc">Version 1.0.0</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- BOOKMARKS SCREEN                                            -->
+        <!-- View saved posts for later reading                          -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <div id="bookmarks" class="screen">
+            <div class="feed-container">
+                <!-- Header -->
+                <div class="posts-sort-header">
+                    <h3 class="posts-section-title">🔖 Your Bookmarks</h3>
+                    <div class="posts-sort-buttons">
+                        <button class="post-sort-btn active" onclick="sortBookmarks('recent')">
+                            <span class="sort-icon">🕐</span>
+                            <span>Recent</span>
+                        </button>
+                        <button class="post-sort-btn" onclick="sortBookmarks('oldest')">
+                            <span class="sort-icon">📅</span>
+                            <span>Oldest</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bookmarked Posts Container -->
+                <div id="bookmarkedPostsList" class="profile-posts-grid">
+                    <!-- Empty State -->
+                    <div id="bookmarksEmptyState" style="padding: 80px 20px; text-align: center;">
+                        <div style="font-size: 64px; margin-bottom: 20px;">🔖</div>
+                        <h3 style="color: var(--text-primary); margin-bottom: 10px;">No Bookmarks Yet</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 30px;">
+                            Save posts by clicking the bookmark button
+                        </p>
+                        <button class="btn-primary" onclick="switchScreen('feed')" style="padding: 12px 24px; border-radius: 8px;">
+                            Browse Posts
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="leaderboard" class="screen">
+            <div class="leaderboard-container">
+                <div class="leaderboard-header">
+                    <div class="leaderboard-title">🏆 Monthly Leaderboard</div>
+                    <div class="leaderboard-meta">
+                        <div class="pool-info">Current Pool: <span class="pool-amount">$3,247.50</span></div>
+                        <div class="total-competitors">Top <span class="competitor-count">100</span> Competitors</div>
+                    </div>
+                </div>
+
+                <div class="scoring-explanation">
+                    <div class="scoring-title">How Rankings Work</div>
+                    <div class="scoring-formula">
+                        Your score is calculated from:
+                        <div class="scoring-factors">
+                            <span class="factor">⏱️ Time Spent</span>
+                            <span class="factor">📝 Posts Created</span>
+                            <span class="factor">💬 Comments Made</span>
+                            <span class="factor">👍 Likes Given</span>
+                        </div>
+                    </div>
+                    <div class="scoring-note">All activity counts! Stay active and engaged to climb the ranks.</div>
+                </div>
+
+                <!-- Leaderboard Table -->
+                <div class="leaderboard-table" id="leaderboardTable">
+                    <div class="table-header">
+                        <div>Rank</div>
+                        <div>User</div>
+                        <div>Score</div>
+                        <div>Est. Payout</div>
+                    </div>
+
+                    <!-- Rows will be dynamically generated here -->
+                    <div id="leaderboardRows"></div>
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        Showing <span id="showingStart">1</span>-<span id="showingEnd">10</span> of <span id="totalUsers">100</span>
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" id="firstPageBtn" onclick="goToPage(1)">
+                            <span>«</span>
+                        </button>
+                        <button class="pagination-btn" id="prevPageBtn" onclick="previousPage()">
+                            <span>‹</span>
+                        </button>
+
+                        <div class="pagination-numbers" id="paginationNumbers">
+                            <!-- Page numbers will be generated here -->
+                        </div>
+
+                        <button class="pagination-btn" id="nextPageBtn" onclick="nextPage()">
+                            <span>›</span>
+                        </button>
+                        <button class="pagination-btn" id="lastPageBtn" onclick="goToPage(10)">
+                            <span>»</span>
+                        </button>
+                    </div>
+                    <div class="pagination-jump">
+                        <span>Go to page:</span>
+                        <input type="number" id="pageJumpInput" min="1" max="10" value="1" onchange="jumpToPage()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Voice Chat Screen -->
+        <div id="createvoice" class="screen">
+            <div class="create-voice-container">
+                <!-- Header -->
+                <div class="create-voice-header">
+                    <button class="back-to-voice-btn" onclick="switchScreen('voicecall')">
+                        ← Back to Voice Chats
+                    </button>
+                    <div class="create-voice-hero">
+                        <div class="create-voice-icon">🎙️</div>
+                        <h1 class="create-voice-title">Create Voice Chat</h1>
+                        <p class="create-voice-subtitle">Set up your live audio room and start hosting discussions</p>
+                    </div>
+                </div>
+
+                <!-- Main Form -->
+                <div class="create-voice-form">
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">📝</div>
+                            <div class="form-section-title">Basic Information</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Room Title <span class="required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="voiceRoomTitle"
+                                placeholder="e.g., Daily Crypto Discussion"
+                                maxlength="60"
+                            >
+                            <div class="form-hint">Make it catchy and descriptive (max 60 characters)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea
+                                class="form-textarea"
+                                id="voiceRoomDesc"
+                                placeholder="What will you discuss in this voice chat? Add topics, agenda, or any relevant details..."
+                                rows="4"
+                                maxlength="300"
+                            ></textarea>
+                            <div class="form-hint">Optional - Help people understand what this chat is about (max 300 characters)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Topic Category <span class="required">*</span>
+                            </label>
+                            <select class="form-select" id="voiceRoomTopic">
+                                <option value="">Select a category...</option>
+                                <option value="general">💬 General Discussion</option>
+                                <option value="trading">💰 Trading & Markets</option>
+                                <option value="defi">🏦 DeFi & Protocols</option>
+                                <option value="nft">🎨 NFTs & GameFi</option>
+                                <option value="tech">⚙️ Tech & Development</option>
+                                <option value="news">📰 News & Updates</option>
+                                <option value="dao">🗳️ DAO & Governance</option>
+                                <option value="memes">😂 Memes & Community</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Privacy & Access Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">🔒</div>
+                            <div class="form-section-title">Privacy & Access</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Room Privacy <span class="required">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-card">
+                                    <input type="radio" name="roomPrivacy" value="public" checked>
+                                    <div class="radio-content">
+                                        <div class="radio-icon">🌐</div>
+                                        <div class="radio-details">
+                                            <div class="radio-title">Public</div>
+                                            <div class="radio-desc">Anyone can discover and join your voice chat</div>
+                                        </div>
+                                        <div class="radio-checkmark">✓</div>
+                                    </div>
+                                </label>
+
+                                <label class="radio-card">
+                                    <input type="radio" name="roomPrivacy" value="followers">
+                                    <div class="radio-content">
+                                        <div class="radio-icon">👥</div>
+                                        <div class="radio-details">
+                                            <div class="radio-title">Followers Only</div>
+                                            <div class="radio-desc">Only your followers can join</div>
+                                        </div>
+                                        <div class="radio-checkmark">✓</div>
+                                    </div>
+                                </label>
+
+                                <label class="radio-card">
+                                    <input type="radio" name="roomPrivacy" value="invite">
+                                    <div class="radio-content">
+                                        <div class="radio-icon">🔒</div>
+                                        <div class="radio-details">
+                                            <div class="radio-title">Invite Only</div>
+                                            <div class="radio-desc">You manually approve each participant</div>
+                                        </div>
+                                        <div class="radio-checkmark">✓</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Room Settings Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">⚙️</div>
+                            <div class="form-section-title">Room Settings</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Maximum Speakers</label>
+                            <select class="form-select" id="maxSpeakers">
+                                <option value="5">5 speakers (Intimate)</option>
+                                <option value="10" selected>10 speakers (Balanced)</option>
+                                <option value="20">20 speakers (Large Panel)</option>
+                                <option value="50">50 speakers (Town Hall)</option>
+                                <option value="unlimited">Unlimited speakers (Open Mic)</option>
+                            </select>
+                            <div class="form-hint">Listeners are always unlimited. This only controls who can speak.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Scheduled Start Time (Optional)</label>
+                            <div class="schedule-options">
+                                <label class="schedule-card">
+                                    <input type="radio" name="scheduleType" value="now" checked>
+                                    <div class="schedule-content">
+                                        <div class="schedule-icon">⚡</div>
+                                        <div class="schedule-text">Start Now</div>
+                                    </div>
+                                </label>
+                                <label class="schedule-card">
+                                    <input type="radio" name="scheduleType" value="scheduled">
+                                    <div class="schedule-content">
+                                        <div class="schedule-icon">📅</div>
+                                        <div class="schedule-text">Schedule for Later</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div id="scheduleInputs" style="display:none; margin-top:16px;">
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                    <input type="date" class="form-input" id="scheduleDate">
+                                    <input type="time" class="form-input" id="scheduleTime">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">✨</div>
+                            <div class="form-section-title">Features & Options</div>
+                        </div>
+
+                        <div class="feature-toggles">
+                            <label class="feature-toggle-card">
+                                <div class="toggle-icon">📹</div>
+                                <div class="toggle-info">
+                                    <div class="toggle-title">Record Session</div>
+                                    <div class="toggle-desc">Save audio recording for later playback</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="recordSession">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </label>
+
+                            <label class="feature-toggle-card">
+                                <div class="toggle-icon">✋</div>
+                                <div class="toggle-info">
+                                    <div class="toggle-title">Allow Speaker Requests</div>
+                                    <div class="toggle-desc">Listeners can raise hand to request speaking</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="allowRequests" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </label>
+
+                            <label class="feature-toggle-card">
+                                <div class="toggle-icon">🔔</div>
+                                <div class="toggle-info">
+                                    <div class="toggle-title">Send Notifications</div>
+                                    <div class="toggle-desc">Notify your followers when room goes live</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="sendNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions-sticky">
+                        <button class="btn-secondary-large" onclick="switchScreen('voicecall')">
+                            Cancel
+                        </button>
+                        <button class="btn-primary-large" onclick="createVoiceRoomFromPage()">
+                            <span class="btn-icon">🎙️</span>
+                            <span>Create Voice Chat</span>
+                            <span class="btn-shimmer"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Room -->
+        <div id="chatroom" class="screen">
+            <div class="chatroom-redesign">
+                <!-- Chat Header - Compact -->
+                <div class="chat-header-compact">
+                    <!-- Room picker modal -->
+                    <div id="chatRoomPicker" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,0.65);" onclick="if(event.target===this)closeChatRoomPicker()">
+                        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:440px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+                            <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                                <span style="font-weight:800;">Switch Chat Room</span>
+                                <button onclick="closeChatRoomPicker()" style="background:none;border:none;color:var(--text-tertiary);font-size:1.2em;cursor:pointer;">&#10005;</button>
+                            </div>
+                            <!-- Topic filter tabs -->
+                            <div id="chatTopicFilter" style="padding:10px 16px 6px;display:flex;gap:6px;flex-wrap:wrap;">
+                                <button class="chat-topic-btn active" onclick="filterChatRoomsByTopic('')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--accent);color:#fff;font-size:0.78em;cursor:pointer;font-weight:600;">All</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('general')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">General</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('solana')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">Solana</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('meme coins')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">Meme Coins</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('news')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">News</button>
+                                <button class="chat-topic-btn" onclick="filterChatRoomsByTopic('trends')" style="padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);font-size:0.78em;cursor:pointer;font-weight:600;">Trends</button>
+                            </div>
+                            <div id="chatRoomList" style="max-height:280px;overflow-y:auto;"></div>
+                            <!-- Create room button -->
+                            <div style="padding:12px 16px;border-top:1px solid var(--border);">
+                                <button onclick="openCreateChatRoomModal()" style="width:100%;padding:10px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;font-size:0.9em;">+ Create New Room</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Create Room Modal -->
+                    <div id="createChatRoomModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background:rgba(0,0,0,0.7);" onclick="if(event.target===this)closeCreateChatRoomModal()">
+                        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:400px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+                            <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                                <span style="font-weight:800;">Create Chat Room</span>
+                                <button onclick="closeCreateChatRoomModal()" style="background:none;border:none;color:var(--text-tertiary);font-size:1.2em;cursor:pointer;">&#10005;</button>
+                            </div>
+                            <div style="padding:16px 20px;">
+                                <div style="margin-bottom:12px;">
+                                    <label style="font-size:0.85em;font-weight:600;display:block;margin-bottom:4px;">Room Name</label>
+                                    <input type="text" id="newChatRoomName" maxlength="100" placeholder="e.g., SOL Trading Tips" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-primary);font-size:0.9em;box-sizing:border-box;" />
+                                </div>
+                                <div style="margin-bottom:12px;">
+                                    <label style="font-size:0.85em;font-weight:600;display:block;margin-bottom:4px;">Description (optional)</label>
+                                    <textarea id="newChatRoomDesc" maxlength="300" rows="2" placeholder="What's this room about?" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-primary);font-size:0.9em;resize:none;box-sizing:border-box;"></textarea>
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="font-size:0.85em;font-weight:600;display:block;margin-bottom:4px;">Topic</label>
+                                    <select id="newChatRoomTopic" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-primary);font-size:0.9em;box-sizing:border-box;">
+                                        <option value="general">General</option>
+                                        <option value="solana">Solana</option>
+                                        <option value="meme coins">Meme Coins</option>
+                                        <option value="news">News</option>
+                                        <option value="trends">Trends</option>
+                                        <option value="lore">Lore</option>
+                                        <option value="utility">Utility</option>
+                                    </select>
+                                </div>
+                                <button id="createChatRoomBtn" onclick="createChatRoom()" style="width:100%;padding:12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;font-size:0.95em;">Create Room</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-header-left" onclick="openChatRoomPicker()" style="cursor:pointer;user-select:none;" title="Switch room">
+                        <span class="chat-room-icon">&#128172;</span>
+                        <div class="chat-header-info">
+                            <div class="chat-room-title" id="activeChatRoomName">Select a Room <span style="font-size:0.7em;opacity:0.55;">&#9660;</span></div>
+                            <div class="chat-room-subtitle" id="activeChatRoomDesc">Tap to browse rooms</div>
+                        </div>
+                    </div>
+                    <div class="chat-online-badge">
+                        <span class="online-indicator">🟢</span>
+                        <span class="online-count" id="chatParticipantCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Messages Area -->
+                <div class="chat-messages-area" id="chatMessagesArea">
+                    <div style="text-align:center;color:var(--text-tertiary);padding:40px;">
+                        <div style="font-size:2em;margin-bottom:8px;">💬</div>
+                        <div>Select or create a room to start chatting</div>
+                    </div>
+                </div>
+
+                <!-- Compact Send Box with Reply Preview -->
+                <div class="chat-send-compact">
+                    <div class="chat-reply-active" style="display: none;" id="chatReplyActive">
+                        <div class="reply-active-content">
+                            <div class="reply-active-header">
+                                <span class="reply-active-icon">↩</span>
+                                <span class="reply-active-label">Replying to</span>
+                                <span class="reply-active-username" id="replyActiveUsername"></span>
+                            </div>
+                            <div class="reply-active-text" id="replyActiveText"></div>
+                        </div>
+                        <button class="reply-cancel-btn" onclick="cancelReply()">
+                            <span>✕</span>
+                        </button>
+                    </div>
+
+                    <div class="send-box-wrapper">
+                        <input type="text" id="compactChatInput" class="chat-input-compact" placeholder="💬 Send a message..." onkeydown="if(event.key==='Enter')sendCompactChatMessage()" />
+                        <button class="send-btn-compact" onclick="sendCompactChatMessage()">
+                            <span class="send-icon">📤</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+    <!-- Start Voice Chat Modal -->
+    <div id="startVoiceModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeStartVoiceModal()"></div>
+        <div class="modal-content voice-modal">
+            <div class="modal-header">
+                <h2>🎙️ Start a Voice Chat</h2>
+                <button class="modal-close" onclick="closeStartVoiceModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Room Title</label>
+                    <input type="text" class="form-input" id="startVoiceRoomTitle" placeholder="e.g., Daily Crypto Discussion">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description (Optional)</label>
+                    <textarea class="form-textarea" id="startVoiceRoomDesc" placeholder="What will you discuss?" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Topic Category</label>
+                    <select class="form-select" id="startVoiceRoomTopic">
+                        <option value="general">💬 General Discussion</option>
+                        <option value="trading">💰 Trading & Markets</option>
+                        <option value="defi">🏦 DeFi & Protocols</option>
+                        <option value="nft">🎨 NFTs & GameFi</option>
+                        <option value="tech">⚙️ Tech & Development</option>
+                        <option value="news">📰 News & Updates</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Room Privacy</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="roomPrivacy" value="public" checked>
+                            <div class="radio-label">
+                                <div class="radio-title">🌐 Public</div>
+                                <div class="radio-desc">Anyone can join</div>
+                            </div>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="roomPrivacy" value="followers">
+                            <div class="radio-label">
+                                <div class="radio-title">👥 Followers Only</div>
+                                <div class="radio-desc">Only your followers can join</div>
+                            </div>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="roomPrivacy" value="invite">
+                            <div class="radio-label">
+                                <div class="radio-title">🔒 Invite Only</div>
+                                <div class="radio-desc">You control who joins</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Maximum Speakers</label>
+                    <select class="form-select" id="startMaxSpeakers">
+                        <option value="5">5 speakers</option>
+                        <option value="10" selected>10 speakers</option>
+                        <option value="20">20 speakers</option>
+                        <option value="unlimited">Unlimited</option>
+                    </select>
+                </div>
+
+                <div class="voice-settings-toggle">
+                    <label>
+                        <input type="checkbox" id="startRecordSession">
+                        <span>📹 Record this session</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" id="startAllowRequests" checked>
+                        <span>✋ Allow speaker requests</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeStartVoiceModal()">Cancel</button>
+                <button class="btn-primary" onclick="createVoiceRoom()">
+                    <span>🎙️</span> Start Voice Chat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner"></div>
+
+    <!-- Performance & PWA Scripts -->
+
+
+
+
+    <!-- Followers Modal -->
+    <div id="followersModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeFollowersModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="followersModalTitle">Followers</h3>
+                <button class="modal-close" onclick="closeFollowersModal()">&#10005;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-search-wrap">
+                    <input type="text" class="modal-search-input" id="followersSearchInput" placeholder="Search followers..." oninput="filterModalUsers('followersSearchInput','followersList')">
+                    <span class="modal-search-icon">&#128269;</span>
+                </div>
+                <div class="user-list" id="followersList">
+                    <div style="text-align:center;color:var(--text-tertiary);padding:30px;font-size:0.9em;">Loading followers...</div>
+                </div>
+                <div class="modal-no-results" id="followersNoResults" style="display:none;">No followers match your search</div>
+            </div>
+        </div>
+    </div>
+    <!-- Following Modal -->
+    <!-- Following Modal -->
+    <div id="followingModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeFollowingModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="followingModalTitle">Following</h3>
+                <button class="modal-close" onclick="closeFollowingModal()">&#10005;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-search-wrap">
+                    <input type="text" class="modal-search-input" id="followingSearchInput" placeholder="Search following..." oninput="filterModalUsers('followingSearchInput','followingList')">
+                    <span class="modal-search-icon">&#128269;</span>
+                </div>
+                <div class="user-list" id="followingList">
+                    <div style="text-align:center;color:var(--text-tertiary);padding:30px;font-size:0.9em;">Loading following...</div>
+                </div>
+                <div class="modal-no-results" id="followingNoResults" style="display:none;">No following match your search</div>
+            </div>
+        </div>
+    </div>
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel" class="side-panel" style="display: none;">
+        <div class="panel-overlay" onclick="closeNotifications()"></div>
+        <div class="panel-content">
+            <div class="panel-header">
+                <h3>Notifications</h3>
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <button onclick="markAllNotifsRead()" style="background:none;border:1px solid var(--border);color:var(--text-secondary);padding:4px 10px;border-radius:8px;font-size:0.78em;cursor:pointer;font-family:inherit;">Mark all read</button>
+                    <button class="panel-close" onclick="closeNotifications()">✕</button>
+                </div>
+            </div>
+            <div class="panel-body" id="notifList">
+                <div style="text-align:center;color:var(--text-tertiary);padding:40px;">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wallet Connection Modal -->
+    <div id="walletModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeWalletModal()"></div>
+        <div class="modal-content wallet-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Connect Your Wallet</h3>
+                <button class="modal-close" onclick="closeWalletModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="wallet-intro">
+                    <p>Connect your Solana wallet to access all features and get verified</p>
+                </div>
+
+                <div class="wallet-options" id="walletOptionsList">
+                    <button class="wallet-option-card" onclick="connectPhantom()">
+                        <div class="wallet-option-icon">👻</div>
+                        <div class="wallet-option-info">
+                            <div class="wallet-option-name">Phantom</div>
+                            <div class="wallet-option-desc wallet-option-status" id="walletStatus_Phantom">Checking…</div>
+                        </div>
+                        <div class="wallet-option-arrow" id="walletArrow_Phantom">→</div>
+                    </button>
+
+                    <button class="wallet-option-card" onclick="connectSolflare()">
+                        <div class="wallet-option-icon">🔥</div>
+                        <div class="wallet-option-info">
+                            <div class="wallet-option-name">Solflare</div>
+                            <div class="wallet-option-desc wallet-option-status" id="walletStatus_Solflare">Checking…</div>
+                        </div>
+                        <div class="wallet-option-arrow" id="walletArrow_Solflare">→</div>
+                    </button>
+
+                    <button class="wallet-option-card" onclick="connectBackpack()">
+                        <div class="wallet-option-icon">🎒</div>
+                        <div class="wallet-option-info">
+                            <div class="wallet-option-name">Backpack</div>
+                            <div class="wallet-option-desc wallet-option-status" id="walletStatus_Backpack">Checking…</div>
+                        </div>
+                        <div class="wallet-option-arrow" id="walletArrow_Backpack">→</div>
+                    </button>
+                </div>
+
+                <div class="wallet-help">
+                    <div class="help-icon">ℹ️</div>
+                    <div class="help-text">
+                        New to Solana? <a href="https://phantom.app/download" target="_blank" class="help-link">Get Phantom — it's free</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Payment Modal -->
+    <div id="verificationPaymentModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeVerificationPaymentModal()"></div>
+        <div class="modal-content verification-payment-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">✓ Complete Verification</h3>
+                <button class="modal-close" onclick="closeVerificationPaymentModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="verification-payment-summary">
+                    <div class="payment-icon">💎</div>
+                    <div class="payment-amount-display">
+                        <div class="payment-label">One-Time Verification Fee</div>
+                        <div class="payment-amount">$5.00</div>
+                        <div class="payment-sol">~0.050 SOL</div>
+                    </div>
+                </div>
+
+                <div class="connected-wallet-section">
+                    <div class="wallet-connected-badge">
+                        <span class="wallet-badge-icon">✓</span>
+                        <span>Wallet Connected</span>
+                    </div>
+                    <div class="wallet-address-display" id="verificationWalletAddress"></div>
+                </div>
+
+                <div class="fee-breakdown-verification">
+                    <h4 class="breakdown-title">Fee Breakdown</h4>
+                    <div class="breakdown-row">
+                        <span>Platform Revenue</span>
+                        <span>$2.50</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Rewards Pool</span>
+                        <span>$2.50</span>
+                    </div>
+                    <div class="breakdown-divider"></div>
+                    <div class="breakdown-row total">
+                        <span>Total</span>
+                        <span>$5.00</span>
+                    </div>
+                </div>
+
+                <div class="verification-benefits-quick">
+                    <div class="quick-benefit">✓ Monthly rewards eligibility</div>
+                    <div class="quick-benefit">✓ Full platform access</div>
+                    <div class="quick-benefit">✓ Referral earnings ($1 per signup)</div>
+                </div>
+
+                <div class="verification-disclaimer">
+                    <span class="disclaimer-icon">ℹ️</span>
+                    <span class="disclaimer-text">You'll be asked to approve the $5 payment in your Solana wallet</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeVerificationPaymentModal()">Cancel</button>
+                <button class="btn-primary" onclick="processVerificationPayment()">
+                    <span>💎</span> Pay $5 & Get Verified
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Claim Earnings Modal -->
+    <div id="claimModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeClaimModal()"></div>
+        <div class="modal-content claim-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">💰 Claim Your Earnings</h3>
+                <button class="modal-close" onclick="closeClaimModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="claim-summary">
+                    <div class="claim-amount-display">
+                        <div class="claim-label" id="claimSourceLabel">Total Available</div>
+                        <div class="claim-amount" id="claimAmountDisplay">$0.00</div>
+                        <div class="claim-sol-amount" id="claimSolAmount">~0.00 SOL</div>
+                    </div>
+                </div>
+
+                <div class="wallet-connection-section">
+                    <div class="wallet-status" id="walletStatus">
+                        <div class="wallet-status-icon">🔌</div>
+                        <div class="wallet-status-text">
+                            <div class="wallet-status-label">Wallet Not Connected</div>
+                            <div class="wallet-status-desc">Connect your Solana wallet to continue</div>
+                        </div>
+                    </div>
+
+                    <button class="connect-wallet-claim-btn" id="connectWalletClaimBtn" onclick="connectWalletForClaim()">
+                        <span>Connect Wallet</span>
+                    </button>
+
+                    <div class="connected-wallet-info" id="connectedWalletInfo" style="display: none;">
+                        <div class="wallet-connected-badge">
+                            <span class="wallet-badge-icon">✓</span>
+                            <span>Wallet Connected</span>
+                        </div>
+                        <div class="wallet-address-display" id="connectedWalletAddress">
+                            0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb4
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solana-network-info">
+                    <div class="network-badge">
+                        <span class="network-icon">◎</span>
+                        <span>Solana Network</span>
+                    </div>
+                    <div class="network-desc">Instant transfer • Low fees (~$0.01)</div>
+                </div>
+
+                <div class="claim-breakdown">
+                    <div class="breakdown-row">
+                        <span>Amount</span>
+                        <span id="breakdownAmount">$0.00</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Solana Network Fee</span>
+                        <span id="breakdownFee">~$0.01</span>
+                    </div>
+                    <div class="breakdown-divider"></div>
+                    <div class="breakdown-row total">
+                        <span>You'll Receive</span>
+                        <span id="breakdownTotal">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="claim-disclaimer">
+                    <span class="disclaimer-icon">ℹ️</span>
+                    <span class="disclaimer-text">Transaction will be sent to your connected Solana wallet. Please confirm the transaction in your wallet.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeClaimModal()">Cancel</button>
+                <button class="btn-primary" id="claimNowBtn" onclick="processClaim()" disabled>
+                    <span>💸</span> Claim Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Options Menu -->
+    <div id="postOptionsMenu" class="context-menu" style="display: none;">
+        <div class="menu-item" onclick="blockUser()">
+            <span class="menu-icon">🚫</span>
+            <span>Block User</span>
+        </div>
+        <div class="menu-item" onclick="muteUser()">
+            <span class="menu-icon">🔇</span>
+            <span>Mute User</span>
+        </div>
+        <div class="menu-item" onclick="hidePost()">
+            <span class="menu-icon">👁️</span>
+            <span>Hide Post</span>
+        </div>
+    </div>
+
+        <!-- ── GIF Picker Overlay ─────────────────────────────── -->
+        <div id="gifPickerOverlay" style="display:none;" onclick="if(event.target===this)closeGifPicker()">
+            <div class="gif-picker">
+                <div class="gif-picker-header">
+                    <h3>🎞️ GIFs</h3>
+                    <div class="gif-search-wrap">
+                        <input class="gif-search-input" id="gifSearchInput" placeholder="Search Tenor..."
+                               oninput="gifSearchDebounced(this.value)" />
+                    </div>
+                    <button class="gif-close-btn" onclick="closeGifPicker()">✕</button>
+                </div>
+                <div class="gif-categories" id="gifCategories"></div>
+                <div class="gif-grid-wrap" id="gifGridWrap">
+                    <div class="gif-status"><div class="gif-spinner"></div>Loading...</div>
+                </div>
+                <div class="gif-attribution">Powered by Tenor</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="whiteflag.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+﻿        <!-- Create Voice Chat Screen -->
+        <div id="createvoice" class="screen">
+            <div class="create-voice-container">
+                <!-- Header -->
+                <div class="create-voice-header">
+                    <button class="back-to-voice-btn" onclick="switchScreen('voicecall')">
+                        ← Back to Voice Chats
+                    </button>
+                    <div class="create-voice-hero">
+                        <div class="create-voice-icon">🎙️</div>
+                        <h1 class="create-voice-title">Create Voice Chat</h1>
+                        <p class="create-voice-subtitle">Set up your live audio room and start hosting discussions</p>
+                    </div>
+                </div>
+
+                <!-- Main Form -->
+                <div class="create-voice-form">
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">📝</div>
+                            <div class="form-section-title">Basic Information</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Room Title <span class="required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="voiceRoomTitle"
+                                placeholder="e.g., Daily Crypto Discussion"
+                                maxlength="60"
+                            >
+                            <div class="form-hint">Make it catchy and descriptive (max 60 characters)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea
+                                class="form-textarea"
+                                id="voiceRoomDesc"
+                                placeholder="What will you discuss in this voice chat? Add topics, agenda, or any relevant details..."
+                                rows="4"
+                                maxlength="300"
+                            ></textarea>
+                            <div class="form-hint">Optional - Help people understand what this chat is about (max 300 characters)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Topic Category <span class="required">*</span>
+                            </label>
+                            <select class="form-select" id="voiceRoomTopic">
+                                <option value="">Select a category...</option>
+                                <option value="general">💬 General Discussion</option>
+                                <option value="trading">💰 Trading & Markets</option>
+                                <option value="defi">🏦 DeFi & Protocols</option>
+                                <option value="nft">🎨 NFTs & GameFi</option>
+                                <option value="tech">⚙️ Tech & Development</option>
+                                <option value="news">📰 News & Updates</option>
+                                <option value="dao">🗳️ DAO & Governance</option>
+                                <option value="memes">😂 Memes & Community</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Privacy & Access Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">🔒</div>
+                            <div class="form-section-title">Privacy & Access</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Room Privacy <span class="required">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-card">
+                                    <input type="radio" name="roomPrivacy" value="public" checked>
+                                    <div class="radio-content">
+                                        <div class="radio-icon">🌐</div>
+                                        <div class="radio-details">
+                                            <div class="radio-title">Public</div>
+                                            <div class="radio-desc">Anyone can discover and join your voice chat</div>
+                                        </div>
+                                        <div class="radio-checkmark">✓</div>
+                                    </div>
+                                </label>
+
+                                <label class="radio-card">
+                                    <input type="radio" name="roomPrivacy" value="followers">
+                                    <div class="radio-content">
+                                        <div class="radio-icon">👥</div>
+                                        <div class="radio-details">
+                                            <div class="radio-title">Followers Only</div>
+                                            <div class="radio-desc">Only your followers can join</div>
+                                        </div>
+                                        <div class="radio-checkmark">✓</div>
+                                    </div>
+                                </label>
+
+                                <label class="radio-card">
+                                    <input type="radio" name="roomPrivacy" value="invite">
+                                    <div class="radio-content">
+                                        <div class="radio-icon">🔒</div>
+                                        <div class="radio-details">
+                                            <div class="radio-title">Invite Only</div>
+                                            <div class="radio-desc">You manually approve each participant</div>
+                                        </div>
+                                        <div class="radio-checkmark">✓</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Room Settings Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">⚙️</div>
+                            <div class="form-section-title">Room Settings</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Maximum Speakers</label>
+                            <select class="form-select" id="maxSpeakers">
+                                <option value="5">5 speakers (Intimate)</option>
+                                <option value="10" selected>10 speakers (Balanced)</option>
+                                <option value="20">20 speakers (Large Panel)</option>
+                                <option value="50">50 speakers (Town Hall)</option>
+                                <option value="unlimited">Unlimited speakers (Open Mic)</option>
+                            </select>
+                            <div class="form-hint">Listeners are always unlimited. This only controls who can speak.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Scheduled Start Time (Optional)</label>
+                            <div class="schedule-options">
+                                <label class="schedule-card">
+                                    <input type="radio" name="scheduleType" value="now" checked>
+                                    <div class="schedule-content">
+                                        <div class="schedule-icon">⚡</div>
+                                        <div class="schedule-text">Start Now</div>
+                                    </div>
+                                </label>
+                                <label class="schedule-card">
+                                    <input type="radio" name="scheduleType" value="scheduled">
+                                    <div class="schedule-content">
+                                        <div class="schedule-icon">📅</div>
+                                        <div class="schedule-text">Schedule for Later</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div id="scheduleInputs" style="display:none; margin-top:16px;">
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                    <input type="date" class="form-input" id="scheduleDate">
+                                    <input type="time" class="form-input" id="scheduleTime">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">✨</div>
+                            <div class="form-section-title">Features & Options</div>
+                        </div>
+
+                        <div class="feature-toggles">
+                            <label class="feature-toggle-card">
+                                <div class="toggle-icon">📹</div>
+                                <div class="toggle-info">
+                                    <div class="toggle-title">Record Session</div>
+                                    <div class="toggle-desc">Save audio recording for later playback</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="recordSession">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </label>
+
+                            <label class="feature-toggle-card">
+                                <div class="toggle-icon">✋</div>
+                                <div class="toggle-info">
+                                    <div class="toggle-title">Allow Speaker Requests</div>
+                                    <div class="toggle-desc">Listeners can raise hand to request speaking</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="allowRequests" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </label>
+
+                            <label class="feature-toggle-card">
+                                <div class="toggle-icon">🔔</div>
+                                <div class="toggle-info">
+                                    <div class="toggle-title">Send Notifications</div>
+                                    <div class="toggle-desc">Notify your followers when room goes live</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="sendNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions-sticky">
+                        <button class="btn-secondary-large" onclick="switchScreen('voicecall')">
+                            Cancel
+                        </button>
+                        <button class="btn-primary-large" onclick="createVoiceRoomFromPage()">
+                            <span class="btn-icon">🎙️</span>
+                            <span>Create Voice Chat</span>
+                            <span class="btn-shimmer"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+

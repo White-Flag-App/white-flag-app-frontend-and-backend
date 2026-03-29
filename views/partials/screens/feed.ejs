@@ -1,0 +1,72 @@
+﻿        <!-- Feed Screen -->
+        <div id="feed" class="screen active">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="feedSearch" placeholder="Search users, posts, topics..." oninput="performSearch('feedSearch', 'feedSearchResults')">
+                    <button class="search-clear-btn" id="feedSearchClearBtn" onclick="clearSearch('feedSearch', 'feedSearchResults', 'feedSearchClearBtn')" style="display:none;">✕</button>
+                </div>
+                <div class="search-results" id="feedSearchResults" style="display:none;"></div>
+            </div>
+
+            <div class="feed-container">
+                <div class="create-post">
+                    <div class="topic-selector">
+                        <button class="topic-pick-btn" onclick="toggleTopicDropdown()">
+                            <span class="topic-pick-icon">🪙</span>
+                            <span id="selectedTopicLabel">Select Topic</span>
+                            <span class="topic-pick-arrow">▾</span>
+                        </button>
+                        <div class="topic-dropdown" id="topicDropdown">
+                            <div class="topic-search-wrap">
+                                <input type="text" class="topic-search" id="topicSearchInput" placeholder="Search crypto..." oninput="filterTopics()" autocomplete="off">
+                            </div>
+                            <div class="topic-list" id="topicList"></div>
+                        </div>
+                        <span id="chosenTopicTag" class="post-topic-tag" style="display:none;">
+                            <span class="post-topic-text"></span>
+                            <span class="topic-clear" onclick="clearTopic()">✕</span>
+                        </span>
+                    </div>
+                    <input type="text" class="post-title-input" id="postTitleInput" placeholder="Title (optional)">
+                    <textarea class="post-textarea" id="postTextarea" placeholder="Engage and earn rewards on Solana..."></textarea>
+                    <input type="url" class="post-link-input" id="postLinkInput" placeholder="🔗 Add link (optional)">
+                    <div class="post-actions">
+                        <div class="media-upload-section">
+                            <button class="media-btn" onclick="uploadImage()">
+                                <span class="media-icon">📷</span> Photo
+                            </button>
+                            <button class="media-btn" onclick="uploadVideo()">
+                                <span class="media-icon">🎥</span> Video
+                            </button>
+                            <button class="media-btn" onclick="openGifPicker('post')" id="postGifBtn">
+                                <span class="media-icon">🎞️</span> GIF
+                            </button>
+                            <span class="post-hint">◎ Engage and earn rewards on Solana</span>
+                        </div>
+                        <button class="post-btn" onclick="createPost()">Post</button>
+                    </div>
+                    <div id="mediaPreview" class="media-preview"></div>
+                </div>
+
+                <!-- Sort Buttons for Feed -->
+                <div class="posts-sort-header">
+                    <h3 class="posts-section-title">📰 Feed Posts</h3>
+                    <div class="posts-sort-buttons">
+                        <button class="post-sort-btn active" onclick="sortPosts('feed', 'recent')">
+                            <span class="sort-icon">🕐</span>
+                            <span>Recent</span>
+                        </button>
+                        <button class="post-sort-btn" onclick="sortPosts('feed', 'liked')">
+                            <span class="sort-icon">❤️</span>
+                            <span>Most Liked</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feed Posts - REDESIGNED TO MATCH PROFILE -->
+                <div class="profile-posts-grid" id="feedPostsGrid">
+                </div>
+            </div>
+        </div>

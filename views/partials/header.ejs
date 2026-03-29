@@ -1,0 +1,38 @@
+﻿        <!-- Top Header with Logo and Wallet -->
+        <div class="top-header">
+            <div class="logo">
+                <span class="logo-icon">🏳️</span>
+                <span>WhiteFlag</span>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeText">Dark</span>
+                </button>
+                <button class="header-icon-btn" onclick="showNotifications()" title="Notifications">
+                    <span class="icon-badge" id="notifBadge" style="display:none;">0</span>
+                    🔔
+                </button>
+                <button class="header-icon-btn" onclick="switchScreen('messages')" title="Messages">
+                    <span class="icon-badge">2</span>
+                    💬
+                </button>
+
+                <!-- Wallet Connection Button (Dynamic) -->
+                <button class="connect-wallet-btn" id="headerWalletBtn" onclick="handleWalletConnection()">
+                    <span id="walletBtnText">Connect Wallet</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Screen Navigation -->
+        <div class="screen-switcher">
+            <button class="screen-btn active" onclick="switchScreen('feed')">Feed</button>
+            <button class="screen-btn" onclick="switchScreen('following')">Following</button>
+            <button class="screen-btn" onclick="goToProfile()">Profile</button>
+            <button class="screen-btn" onclick="switchScreen('bookmarks')">Bookmarks</button>
+            <button class="screen-btn" onclick="switchScreen('chatroom')">Chat Room</button>
+            <button class="screen-btn" onclick="switchScreen('voicecall')">Voice Chat</button>
+            <button class="screen-btn" onclick="switchScreen('verification')">Get Verified</button>
+            <button class="screen-btn" onclick="switchScreen('leaderboard')">Leaderboard</button>
+        </div>

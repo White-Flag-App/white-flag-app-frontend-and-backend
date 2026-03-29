@@ -1,0 +1,200 @@
+﻿        <!-- Profile Screen -->
+        <div id="profile" class="screen">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="profileSearch" placeholder="Search users, posts, topics..." oninput="performSearch('profileSearch', 'profileSearchResults')">
+                    <button class="search-clear-btn" id="profileSearchClearBtn" onclick="clearSearch('profileSearch', 'profileSearchResults', 'profileSearchClearBtn')" style="display:none;">✕</button>
+                </div>
+                <div class="search-results" id="profileSearchResults" style="display:none;"></div>
+            </div>
+
+            <div class="profile-container">
+
+                <!-- ── DISPLAY VIEW - COMPACT REDESIGN ── -->
+                <div id="profileDisplay">
+                    <!-- Profile Card - Compact Design -->
+                    <div class="profile-compact-card">
+                        <div class="profile-card-accent"></div>
+
+                        <!-- Header Row -->
+                        <div class="profile-compact-header">
+                            <div class="profile-left-section">
+                                <div class="profile-avatar-compact" id="profileAvatar">—</div>
+                                <div class="profile-name-section">
+                                    <div class="profile-username-row">
+                                        <span class="profile-username-text">—</span>
+                                        <span class="verified-badge-compact" style="display:none;">✓</span>
+                                    </div>
+                                    <div class="profile-rank-badge"></div>
+                                </div>
+                            </div>
+                            <button class="follow-btn-compact" onclick="toggleFollow()">+ Follow</button>
+                        </div>
+
+                        <!-- Stats Row - Compact -->
+                        <div class="profile-stats-compact">
+                            <div class="stat-compact" onclick="showFollowersList()">
+                                <div class="stat-compact-value" data-stat="followers">0</div>
+                                <div class="stat-compact-label">Followers</div>
+                            </div>
+                            <div class="stat-divider-compact"></div>
+                            <div class="stat-compact" onclick="showFollowingList()">
+                                <div class="stat-compact-value" data-stat="following">0</div>
+                                <div class="stat-compact-label">Following</div>
+                            </div>
+                            <div class="stat-divider-compact"></div>
+                            <div class="stat-compact">
+                                <div class="stat-compact-value" data-stat="posts">0</div>
+                                <div class="stat-compact-label">Posts</div>
+                            </div>
+                        </div>
+
+                        <!-- Bio - Compact -->
+                        <div class="profile-bio-compact">
+                        </div>
+
+                        <!-- Meta Info - Compact -->
+                        <div class="profile-meta-compact">
+                            <span class="meta-item">📅 Just joined</span>
+                        </div>
+
+                        <!-- Action Buttons Row -->
+                        <div class="profile-actions-row">
+                            <button class="action-btn-compact" onclick="toggleProfileView('settings')">
+                                <span>⚙️</span> Settings
+                            </button>
+                        </div>
+
+                        <!-- Wallet Address -->
+                        <div class="profile-wallet-row" id="profileWalletRow">
+                            <span class="wallet-row-icon">◎</span>
+                            <span class="wallet-row-address" id="profileWalletAddress">Not connected — connect wallet to show address</span>
+                            <button class="wallet-row-copy" onclick="copyWalletAddress()" title="Copy address" id="profileWalletCopyBtn" style="display:none;">⧉</button>
+                        </div>
+                    </div>
+
+                    <div class="earnings-compact-card">
+                        <div class="earnings-compact-accent"></div>
+                        <div class="earnings-compact-content">
+                            <div class="earnings-compact-header">
+                                <div class="earnings-info-group">
+                                    <span class="earnings-label-compact">💰 Creator Earnings</span>
+                                    <span class="earnings-amount-compact">$247.50</span>
+                                </div>
+                                <button class="claim-btn-compact" onclick="claimCreatorEarnings()">
+                                    💵 Claim
+                                </button>
+                            </div>
+
+                            <div class="earnings-stats-compact">
+                                <div class="earning-stat-mini">
+                                    <span class="stat-mini-icon">⏱️</span>
+                                    <span class="stat-mini-value">89h</span>
+                                </div>
+                                <div class="earning-stat-mini">
+                                    <span class="stat-mini-icon">📝</span>
+                                    <span class="stat-mini-value">247</span>
+                                </div>
+                                <div class="earning-stat-mini">
+                                    <span class="stat-mini-icon">💬</span>
+                                    <span class="stat-mini-value">892</span>
+                                </div>
+                                <div class="earning-stat-mini">
+                                    <span class="stat-mini-icon">👍</span>
+                                    <span class="stat-mini-value">2.3k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-posts-section">
+                        <!-- Pinned Post Section -->
+                        <div class="pinned-post-section" id="pinnedPostSection" style="display: none;">
+                            <h3 class="section-title">📌 Pinned Post</h3>
+                            <div class="feed-container" id="pinnedPostContainer">
+                                <!-- Pinned post will appear here -->
+                            </div>
+                        </div>
+
+                        <!-- Recent Posts Section - REDESIGNED -->
+                        <div class="recent-posts-container">
+                            <div class="recent-posts-header">
+                                <h3 class="recent-posts-title">📝 Recent Posts</h3>
+                                <div class="posts-sort-buttons">
+                                    <button class="post-sort-btn active" onclick="sortPosts('profile', 'recent')">
+                                        <span class="sort-icon">🕐</span>
+                                        <span>Recent</span>
+                                    </button>
+                                    <button class="post-sort-btn" onclick="sortPosts('profile', 'liked')">
+                                        <span class="sort-icon">❤️</span>
+                                        <span>Most Liked</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="profile-posts-grid" id="profilePostsGrid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── SETTINGS VIEW ── -->
+                <div id="profileSettings" style="display:none;">
+                    <div class="profile-settings">
+                        <div class="settings-header">
+                            <div class="settings-header-left">
+                                <h2 class="settings-title">Profile Settings</h2>
+                                <div class="privacy-lock-toggle" onclick="togglePrivacyLock()" id="privacyLockToggle">
+                                    <span class="lock-icon">🔓</span>
+                                    <span class="lock-label">Public Account</span>
+                                </div>
+                            </div>
+                            <button class="back-btn" onclick="toggleProfileView('display')">← Back to Profile</button>
+                        </div>
+
+                        <div class="settings-avatar-row">
+                            <div class="profile-avatar settings-avatar" id="settingsAvatar" onclick="uploadProfilePicture()">—</div>
+                            <div class="settings-avatar-info">
+                                <span class="settings-avatar-label">Profile Picture</span>
+                                <span class="settings-avatar-hint">Click avatar to upload</span>
+                            </div>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-input" id="username" value="" placeholder="Enter your username">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Display Name</label>
+                                <input type="text" class="form-input" id="displayName" value="" placeholder="Enter your display name">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Bio</label>
+                                <textarea class="form-textarea" id="bio" placeholder="Tell us about yourself..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-input" id="location" value="" placeholder="City, Country">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Website</label>
+                                <input type="text" class="form-input" id="website" value="" placeholder="https://yourwebsite.com">
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="save-profile-btn" onclick="saveProfile()">Save Changes</button>
+                                <button class="cancel-btn" onclick="cancelEdit()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>

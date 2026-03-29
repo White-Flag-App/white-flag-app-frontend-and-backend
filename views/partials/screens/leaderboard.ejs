@@ -1,0 +1,69 @@
+﻿        <div id="leaderboard" class="screen">
+            <div class="leaderboard-container">
+                <div class="leaderboard-header">
+                    <div class="leaderboard-title">🏆 Monthly Leaderboard</div>
+                    <div class="leaderboard-meta">
+                        <div class="pool-info">Current Pool: <span class="pool-amount">$3,247.50</span></div>
+                        <div class="total-competitors">Top <span class="competitor-count">100</span> Competitors</div>
+                    </div>
+                </div>
+
+                <div class="scoring-explanation">
+                    <div class="scoring-title">How Rankings Work</div>
+                    <div class="scoring-formula">
+                        Your score is calculated from:
+                        <div class="scoring-factors">
+                            <span class="factor">⏱️ Time Spent</span>
+                            <span class="factor">📝 Posts Created</span>
+                            <span class="factor">💬 Comments Made</span>
+                            <span class="factor">👍 Likes Given</span>
+                        </div>
+                    </div>
+                    <div class="scoring-note">All activity counts! Stay active and engaged to climb the ranks.</div>
+                </div>
+
+                <!-- Leaderboard Table -->
+                <div class="leaderboard-table" id="leaderboardTable">
+                    <div class="table-header">
+                        <div>Rank</div>
+                        <div>User</div>
+                        <div>Score</div>
+                        <div>Est. Payout</div>
+                    </div>
+
+                    <!-- Rows will be dynamically generated here -->
+                    <div id="leaderboardRows"></div>
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        Showing <span id="showingStart">1</span>-<span id="showingEnd">10</span> of <span id="totalUsers">100</span>
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" id="firstPageBtn" onclick="goToPage(1)">
+                            <span>«</span>
+                        </button>
+                        <button class="pagination-btn" id="prevPageBtn" onclick="previousPage()">
+                            <span>‹</span>
+                        </button>
+
+                        <div class="pagination-numbers" id="paginationNumbers">
+                            <!-- Page numbers will be generated here -->
+                        </div>
+
+                        <button class="pagination-btn" id="nextPageBtn" onclick="nextPage()">
+                            <span>›</span>
+                        </button>
+                        <button class="pagination-btn" id="lastPageBtn" onclick="goToPage(10)">
+                            <span>»</span>
+                        </button>
+                    </div>
+                    <div class="pagination-jump">
+                        <span>Go to page:</span>
+                        <input type="number" id="pageJumpInput" min="1" max="10" value="1" onchange="jumpToPage()">
+                    </div>
+                </div>
+            </div>
+        </div>
+

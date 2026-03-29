@@ -1,0 +1,32 @@
+﻿        <!-- Following Screen -->
+        <div id="following" class="screen">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="followingSearch" placeholder="Search users, posts, topics..." oninput="performSearch('followingSearch', 'followingSearchResults')">
+                    <button class="search-clear-btn" id="followingSearchClearBtn" onclick="clearSearch('followingSearch', 'followingSearchResults', 'followingSearchClearBtn')" style="display:none;">✕</button>
+                </div>
+                <div class="search-results" id="followingSearchResults" style="display:none;"></div>
+            </div>
+
+            <div class="feed-container">
+                <div class="following-header-section">
+                    <h2 class="following-title">📰 Following Feed</h2>
+                    <div class="posts-sort-buttons">
+                        <button class="post-sort-btn active" onclick="sortPosts('following', 'recent')">
+                            <span class="sort-icon">🕐</span>
+                            <span>Recent</span>
+                        </button>
+                        <button class="post-sort-btn" onclick="sortPosts('following', 'liked')">
+                            <span class="sort-icon">❤️</span>
+                            <span>Most Liked</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Following Posts - REDESIGNED TO MATCH PROFILE -->
+                <div class="profile-posts-grid" id="followingPostsGrid">
+                </div>
+            </div>
+        </div>

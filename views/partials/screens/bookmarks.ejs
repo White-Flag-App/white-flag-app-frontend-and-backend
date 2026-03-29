@@ -1,0 +1,35 @@
+﻿        <!-- View saved posts for later reading                          -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <div id="bookmarks" class="screen">
+            <div class="feed-container">
+                <!-- Header -->
+                <div class="posts-sort-header">
+                    <h3 class="posts-section-title">🔖 Your Bookmarks</h3>
+                    <div class="posts-sort-buttons">
+                        <button class="post-sort-btn active" onclick="sortBookmarks('recent')">
+                            <span class="sort-icon">🕐</span>
+                            <span>Recent</span>
+                        </button>
+                        <button class="post-sort-btn" onclick="sortBookmarks('oldest')">
+                            <span class="sort-icon">📅</span>
+                            <span>Oldest</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bookmarked Posts Container -->
+                <div id="bookmarkedPostsList" class="profile-posts-grid">
+                    <!-- Empty State -->
+                    <div id="bookmarksEmptyState" style="padding: 80px 20px; text-align: center;">
+                        <div style="font-size: 64px; margin-bottom: 20px;">🔖</div>
+                        <h3 style="color: var(--text-primary); margin-bottom: 10px;">No Bookmarks Yet</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 30px;">
+                            Save posts by clicking the bookmark button
+                        </p>
+                        <button class="btn-primary" onclick="switchScreen('feed')" style="padding: 12px 24px; border-radius: 8px;">
+                            Browse Posts
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>

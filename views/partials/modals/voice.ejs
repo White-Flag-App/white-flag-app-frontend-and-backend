@@ -1,0 +1,87 @@
+﻿    <!-- Start Voice Chat Modal -->
+    <div id="startVoiceModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeStartVoiceModal()"></div>
+        <div class="modal-content voice-modal">
+            <div class="modal-header">
+                <h2>🎙️ Start a Voice Chat</h2>
+                <button class="modal-close" onclick="closeStartVoiceModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Room Title</label>
+                    <input type="text" class="form-input" id="startVoiceRoomTitle" placeholder="e.g., Daily Crypto Discussion">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description (Optional)</label>
+                    <textarea class="form-textarea" id="startVoiceRoomDesc" placeholder="What will you discuss?" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Topic Category</label>
+                    <select class="form-select" id="startVoiceRoomTopic">
+                        <option value="general">💬 General Discussion</option>
+                        <option value="trading">💰 Trading & Markets</option>
+                        <option value="defi">🏦 DeFi & Protocols</option>
+                        <option value="nft">🎨 NFTs & GameFi</option>
+                        <option value="tech">⚙️ Tech & Development</option>
+                        <option value="news">📰 News & Updates</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Room Privacy</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="roomPrivacy" value="public" checked>
+                            <div class="radio-label">
+                                <div class="radio-title">🌐 Public</div>
+                                <div class="radio-desc">Anyone can join</div>
+                            </div>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="roomPrivacy" value="followers">
+                            <div class="radio-label">
+                                <div class="radio-title">👥 Followers Only</div>
+                                <div class="radio-desc">Only your followers can join</div>
+                            </div>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="roomPrivacy" value="invite">
+                            <div class="radio-label">
+                                <div class="radio-title">🔒 Invite Only</div>
+                                <div class="radio-desc">You control who joins</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Maximum Speakers</label>
+                    <select class="form-select" id="startMaxSpeakers">
+                        <option value="5">5 speakers</option>
+                        <option value="10" selected>10 speakers</option>
+                        <option value="20">20 speakers</option>
+                        <option value="unlimited">Unlimited</option>
+                    </select>
+                </div>
+
+                <div class="voice-settings-toggle">
+                    <label>
+                        <input type="checkbox" id="startRecordSession">
+                        <span>📹 Record this session</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" id="startAllowRequests" checked>
+                        <span>✋ Allow speaker requests</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeStartVoiceModal()">Cancel</button>
+                <button class="btn-primary" onclick="createVoiceRoom()">
+                    <span>🎙️</span> Start Voice Chat
+                </button>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,302 @@
+﻿    <!-- Followers Modal -->
+    <div id="followersModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeFollowersModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Followers</h3>
+                <button class="modal-close" onclick="closeFollowersModal()">&#10005;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-search-wrap">
+                    <input type="text" class="modal-search-input" id="followersSearchInput" placeholder="Search followers..." oninput="filterModalUsers('followersSearchInput','followersList')">
+                    <span class="modal-search-icon">&#128269;</span>
+                </div>
+                <div class="user-list" id="followersList">
+                    <!-- Populated dynamically by showFollowersList() -->
+                </div>
+                <div class="modal-no-results" id="followersNoResults" style="display:none;">No followers match your search</div>
+            </div>
+        </div>
+    </div>
+    <!-- Following Modal -->
+    <div id="followingModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeFollowingModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Following</h3>
+                <button class="modal-close" onclick="closeFollowingModal()">&#10005;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-search-wrap">
+                    <input type="text" class="modal-search-input" id="followingSearchInput" placeholder="Search following..." oninput="filterModalUsers('followingSearchInput','followingList')">
+                    <span class="modal-search-icon">&#128269;</span>
+                </div>
+                <div class="user-list" id="followingList">
+                    <!-- Populated dynamically by showFollowingList() -->
+                </div>
+                <div class="modal-no-results" id="followingNoResults" style="display:none;">No following match your search</div>
+            </div>
+        </div>
+    </div>
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel" class="side-panel" style="display: none;">
+        <div class="panel-overlay" onclick="closeNotifications()"></div>
+        <div class="panel-content">
+            <div class="panel-header">
+                <h3>Notifications</h3>
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <button onclick="markAllNotifsRead()" style="background:none;border:1px solid var(--border);color:var(--text-secondary);padding:4px 10px;border-radius:8px;font-size:0.78em;cursor:pointer;font-family:inherit;">Mark all read</button>
+                    <button class="panel-close" onclick="closeNotifications()">✕</button>
+                </div>
+            </div>
+            <div class="panel-body" id="notifList">
+                <div style="text-align:center;color:var(--text-tertiary);padding:40px;">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wallet Connection Modal -->
+    <div id="walletModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeWalletModal()"></div>
+        <div class="modal-content wallet-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Connect Your Wallet</h3>
+                <button class="modal-close" onclick="closeWalletModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="wallet-intro">
+                    <p>Connect a Solana or EVM wallet to access all features</p>
+                </div>
+
+                <!-- Wallet options rendered dynamically by openWalletModal() -->
+                <div class="wallet-options" id="walletOptionsContainer"></div>
+
+                <div class="wallet-help">
+                    <div class="help-icon">ℹ️</div>
+                    <div class="help-text">
+                        Don't have a wallet?
+                        <a href="https://phantom.app" target="_blank" rel="noopener noreferrer" class="help-link">Download Phantom</a> or
+                        <a href="https://metamask.io" target="_blank" rel="noopener noreferrer" class="help-link">MetaMask</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Setup Modal (shown for new users after wallet connect) -->
+    <div id="profileSetupModal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content profile-setup-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Complete Your Profile</h3>
+            </div>
+            <div class="modal-body">
+                <div class="profile-setup-header">
+                    <div class="setup-icon">👤</div>
+                    <div class="setup-title">Welcome to WhiteFlag!</div>
+                    <div class="setup-subtitle">Set up your profile to get started</div>
+                </div>
+
+                <div class="profile-setup-wallet-badge">
+                    <span class="badge-icon">✓</span>
+                    <span id="setupWalletAddr">Connected</span>
+                </div>
+
+                <div class="profile-setup-form" id="profileSetupForm">
+                    <div class="setup-field">
+                        <label>Username <span class="optional-tag">(required)</span></label>
+                        <input type="text" id="setupUsername" placeholder="Choose a username" maxlength="50" autocomplete="off" />
+                        <div class="field-hint">3–50 characters. Letters, numbers, underscores only.</div>
+                        <div class="field-error" id="setupUsernameError"></div>
+                    </div>
+
+                    <div class="setup-field">
+                        <label>Bio <span class="optional-tag">(optional)</span></label>
+                        <input type="text" id="setupBio" placeholder="Tell us about yourself" maxlength="160" />
+                        <div class="field-hint">Max 160 characters.</div>
+                    </div>
+
+                    <div class="setup-actions">
+                        <button class="btn-save-profile" id="saveProfileBtn" onclick="saveProfileSetup()">Save Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Payment Modal -->
+    <div id="verificationPaymentModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeVerificationPaymentModal()"></div>
+        <div class="modal-content verification-payment-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">✓ Complete Verification</h3>
+                <button class="modal-close" onclick="closeVerificationPaymentModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="verification-payment-summary">
+                    <div class="payment-icon">💎</div>
+                    <div class="payment-amount-display">
+                        <div class="payment-label">One-Time Verification Fee</div>
+                        <div class="payment-amount" id="verifyPaymentAmount">…</div>
+                        <div class="payment-sol" id="verifyPaymentToken">…</div>
+                    </div>
+                </div>
+
+                <div class="connected-wallet-section">
+                    <div class="wallet-connected-badge">
+                        <span class="wallet-badge-icon">✓</span>
+                        <span>Wallet Connected</span>
+                    </div>
+                    <div class="wallet-address-display" id="verificationWalletAddress"></div>
+                </div>
+
+                <div class="fee-breakdown-verification">
+                    <h4 class="breakdown-title">Fee Breakdown</h4>
+                    <div class="breakdown-row">
+                        <span>Platform Revenue</span>
+                        <span id="verifyBreakdownPlatform">…</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Rewards Pool</span>
+                        <span id="verifyBreakdownPool">…</span>
+                    </div>
+                    <div class="breakdown-divider"></div>
+                    <div class="breakdown-row total">
+                        <span>Total</span>
+                        <span id="verifyBreakdownTotal">…</span>
+                    </div>
+                </div>
+
+                <div class="verification-benefits-quick">
+                    <div class="quick-benefit">✓ Monthly rewards eligibility</div>
+                    <div class="quick-benefit">✓ Full platform access</div>
+                    <div class="quick-benefit">✓ Referral earnings ($1 per signup)</div>
+                </div>
+
+                <div class="verification-disclaimer">
+                    <span class="disclaimer-icon">ℹ️</span>
+                    <span class="disclaimer-text" id="verifyDisclaimer">Loading payment details…</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeVerificationPaymentModal()">Cancel</button>
+                <button class="btn-primary" id="verifyPayBtn" onclick="processVerificationPayment()">
+                    <span>💎</span> Pay & Get Verified
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Claim Earnings Modal -->
+    <div id="claimModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeClaimModal()"></div>
+        <div class="modal-content claim-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">💰 Claim Your Earnings</h3>
+                <button class="modal-close" onclick="closeClaimModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="claim-summary">
+                    <div class="claim-amount-display">
+                        <div class="claim-label" id="claimSourceLabel">Total Available</div>
+                        <div class="claim-amount" id="claimAmountDisplay">$0.00</div>
+                        <div class="claim-sol-amount" id="claimSolAmount">~0.00 SOL</div>
+                    </div>
+                </div>
+
+                <div class="wallet-connection-section">
+                    <div class="wallet-status" id="walletStatus">
+                        <div class="wallet-status-icon">🔌</div>
+                        <div class="wallet-status-text">
+                            <div class="wallet-status-label">Wallet Not Connected</div>
+                            <div class="wallet-status-desc">Connect your Solana wallet to continue</div>
+                        </div>
+                    </div>
+
+                    <button class="connect-wallet-claim-btn" id="connectWalletClaimBtn" onclick="connectWalletForClaim()">
+                        <span>Connect Wallet</span>
+                    </button>
+
+                    <div class="connected-wallet-info" id="connectedWalletInfo" style="display: none;">
+                        <div class="wallet-connected-badge">
+                            <span class="wallet-badge-icon">✓</span>
+                            <span>Wallet Connected</span>
+                        </div>
+                        <div class="wallet-address-display" id="connectedWalletAddress">
+                            0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb4
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solana-network-info">
+                    <div class="network-badge">
+                        <span class="network-icon">◎</span>
+                        <span>Solana Network</span>
+                    </div>
+                    <div class="network-desc">Instant transfer • Low fees (~$0.01)</div>
+                </div>
+
+                <div class="claim-breakdown">
+                    <div class="breakdown-row">
+                        <span>Amount</span>
+                        <span id="breakdownAmount">$0.00</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Solana Network Fee</span>
+                        <span id="breakdownFee">~$0.01</span>
+                    </div>
+                    <div class="breakdown-divider"></div>
+                    <div class="breakdown-row total">
+                        <span>You'll Receive</span>
+                        <span id="breakdownTotal">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="claim-disclaimer">
+                    <span class="disclaimer-icon">ℹ️</span>
+                    <span class="disclaimer-text">Transaction will be sent to your connected Solana wallet. Please confirm the transaction in your wallet.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeClaimModal()">Cancel</button>
+                <button class="btn-primary" id="claimNowBtn" onclick="processClaim()" disabled>
+                    <span>💸</span> Claim Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Options Menu -->
+    <div id="postOptionsMenu" class="context-menu" style="display: none;">
+        <div class="menu-item" onclick="blockUser()">
+            <span class="menu-icon">🚫</span>
+            <span>Block User</span>
+        </div>
+        <div class="menu-item" onclick="muteUser()">
+            <span class="menu-icon">🔇</span>
+            <span>Mute User</span>
+        </div>
+        <div class="menu-item" onclick="hidePost()">
+            <span class="menu-icon">👁️</span>
+            <span>Hide Post</span>
+        </div>
+    </div>
+
+        <!-- ── GIF Picker Overlay ─────────────────────────────── -->
+        <div id="gifPickerOverlay" style="display:none;" onclick="if(event.target===this)closeGifPicker()">
+            <div class="gif-picker">
+                <div class="gif-picker-header">
+                    <h3>🎞️ GIFs</h3>
+                    <div class="gif-search-wrap">
+                        <input class="gif-search-input" id="gifSearchInput" placeholder="Search Tenor..."
+                               oninput="gifSearchDebounced(this.value)" />
+                    </div>
+                    <button class="gif-close-btn" onclick="closeGifPicker()">✕</button>
+                </div>
+                <div class="gif-categories" id="gifCategories"></div>
+                <div class="gif-grid-wrap" id="gifGridWrap">
+                    <div class="gif-status"><div class="gif-spinner"></div>Loading...</div>
+                </div>
+                <div class="gif-attribution">Powered by Tenor</div>
+            </div>
+        </div>

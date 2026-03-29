@@ -1,0 +1,128 @@
+﻿        <!-- Messages -->
+        <div id="messages" class="screen">
+            <div class="messages-fullscreen-container">
+
+                <!-- Search Section - Always at Top -->
+                <div class="messages-search-section">
+                    <h1 class="messages-main-title">💬 Messages</h1>
+
+                    <!-- Clickable Search Bar -->
+                    <div class="messages-search-clickable" onclick="focusMessageSearch()">
+                        <div class="search-header-row">
+                            <div class="search-icon-large">🔍</div>
+                            <div class="search-text-area">
+                                <div class="search-main-text">Search for someone to message</div>
+                                <div class="search-sub-text">Find users by username</div>
+                            </div>
+                            <div class="search-action-icon">→</div>
+                        </div>
+                    </div>
+
+                    <!-- Actual Search Input (Shown when clicked) -->
+                    <div class="messages-search-input-area" id="messageSearchInputArea" style="display: none;">
+                        <div class="search-input-header">
+                            <span class="search-input-title">✉️ Start a New Conversation</span>
+                            <button class="close-search-input-btn" onclick="closeMessageSearch()">✕</button>
+                        </div>
+                        <div class="search-input-box">
+                            <span class="search-icon-small">🔍</span>
+                            <input type="text" class="message-search-field" id="messageSearchField" placeholder="Type username to search..." oninput="searchUsersInMessages(this.value)" autofocus>
+                        </div>
+
+                        <!-- Live Search Results -->
+                        <div class="search-live-results" id="searchLiveResults">
+                            <div class="search-hint">Try searching: "crypto", "alpha", "defi", "moon"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages List Section -->
+                <div class="messages-list-section" id="messagesListSection">
+                    <div class="messages-list-header">
+                        <h2 class="list-section-title">Recent Conversations</h2>
+                        <span class="conversation-count">5 active</span>
+                    </div>
+
+                    <div class="message-threads-fullscreen" id="messageThreadsList">
+                        <div class="message-thread-card" data-dm-user="AlphaGrinder">
+                            <div class="thread-avatar">A</div>
+                            <div class="thread-info">
+                                <div class="thread-header-row">
+                                    <div class="thread-name">
+                                        <span class="thread-username">AlphaGrinder</span>
+                                        <span class="verified-badge">VERIFIED</span>
+                                    </div>
+                                    <div class="thread-timestamp">2m ago</div>
+                                </div>
+                                <div class="thread-preview-text">Hey! Want to join the voice chat?</div>
+                            </div>
+                            <div class="thread-unread-badge">2</div>
+                        </div>
+
+                        <div class="message-thread-card" data-dm-user="MoonChaser">
+                            <div class="thread-avatar">M</div>
+                            <div class="thread-info">
+                                <div class="thread-header-row">
+                                    <div class="thread-name">
+                                        <span class="thread-username">MoonChaser</span>
+                                        <span class="verified-badge">VERIFIED</span>
+                                    </div>
+                                    <div class="thread-timestamp">1h ago</div>
+                                </div>
+                                <div class="thread-preview-text">Thanks for the tip on that DeFi protocol!</div>
+                            </div>
+                        </div>
+
+                        <div class="message-thread-card" data-dm-user="DeFiMaster">
+                            <div class="thread-avatar">D</div>
+                            <div class="thread-info">
+                                <div class="thread-header-row">
+                                    <div class="thread-name">
+                                        <span class="thread-username">DeFiMaster</span>
+                                        <span class="verified-badge">VERIFIED</span>
+                                    </div>
+                                    <div class="thread-timestamp">3h ago</div>
+                                </div>
+                                <div class="thread-preview-text">Great post about Solana!</div>
+                            </div>
+                        </div>
+
+                        <div class="message-thread-card" data-dm-user="CryptoNinja">
+                            <div class="thread-avatar">C</div>
+                            <div class="thread-info">
+                                <div class="thread-header-row">
+                                    <div class="thread-name">
+                                        <span class="thread-username">CryptoNinja</span>
+                                        <span class="verified-badge">VERIFIED</span>
+                                    </div>
+                                    <div class="thread-timestamp">Yesterday</div>
+                                </div>
+                                <div class="thread-preview-text">Let's collaborate on that project</div>
+                            </div>
+                        </div>
+
+                        <div class="message-thread-card" data-dm-user="SolanaKing">
+                            <div class="thread-avatar">S</div>
+                            <div class="thread-info">
+                                <div class="thread-header-row">
+                                    <div class="thread-name">
+                                        <span class="thread-username">SolanaKing</span>
+                                        <span class="verified-badge">VERIFIED</span>
+                                    </div>
+                                    <div class="thread-timestamp">2 days ago</div>
+                                </div>
+                                <div class="thread-preview-text">Did you see the latest Solana update?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="messages-empty-fullscreen" style="display: none;">
+                    <div class="empty-icon-large">💬</div>
+                    <div class="empty-title-large">No Messages Yet</div>
+                    <div class="empty-desc-large">Click the search button above to find someone to message</div>
+                </div>
+            </div>
+        </div>
+

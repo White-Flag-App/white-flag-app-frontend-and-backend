@@ -1,0 +1,41 @@
+﻿        <!-- Message Conversation (NEW) -->
+        <div id="conversation" class="screen">
+            <div class="conversation-container">
+                <div class="conversation-header">
+                    <button class="back-btn" onclick="switchScreen('messages')">← Back</button>
+                    <div class="conversation-user-info">
+                        <div class="conversation-avatar" id="convAvatar">A</div>
+                        <div class="conversation-user-details">
+                            <div class="conversation-username" id="convUsername">AlphaGrinder</div>
+                            <div class="conversation-status">Active now</div>
+                        </div>
+                    </div>
+                    <button class="conversation-options-btn" onclick="showToast('Conversation options coming soon')">⋮</button>
+                </div>
+
+                <div class="conversation-messages" id="conversationMessages">
+                    <!-- Messages will be loaded here -->
+                    <div class="message-bubble received">
+                        <div class="message-content">Hey! Want to join the voice chat?</div>
+                        <div class="message-time">2:30 PM</div>
+                    </div>
+
+                    <div class="message-bubble sent">
+                        <div class="message-content">Sure! Give me 5 minutes</div>
+                        <div class="message-time">2:31 PM</div>
+                    </div>
+
+                    <div class="message-bubble received">
+                        <div class="message-content">Sounds good! I’ll be waiting in the Bitcoin room</div>
+                        <div class="message-time">2:32 PM</div>
+                    </div>
+                </div>
+
+                <div class="conversation-input-container">
+                    <textarea class="conversation-input" id="messageInput" placeholder="Type a message..." rows="1"></textarea>
+                    <button class="send-message-btn" onclick="sendDirectMessage()">
+                        <span>📤</span>
+                    </button>
+                </div>
+            </div>
+        </div>

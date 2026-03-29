@@ -1,0 +1,164 @@
+﻿        <!-- Voice Chat -->
+        <div id="voicecall" class="screen">
+            <div class="voice-container">
+                <!-- Start Voice Chat Section -->
+                <div class="start-voice-section">
+                    <button class="start-voice-btn" onclick="switchScreen('createvoice')">
+                        <span class="start-voice-icon">🎙️</span>
+                        <div class="start-voice-text">
+                            <div class="start-voice-title">Create a Voice Chat</div>
+                            <div class="start-voice-subtitle">Set up your own voice room with custom settings</div>
+                        </div>
+                        <span class="start-voice-arrow">→</span>
+                    </button>
+                </div>
+
+                <!-- Active Voice Chat Header -->
+                <div class="voice-header">
+                    <div class="space-info">
+                        <div class="space-title">🎙️ Crypto Talk - Daily Discussion</div>
+                        <div class="space-host">Hosted by <span class="host-name username-link" onclick="goToProfile('CryptoNinja')">CryptoNinja</span></div>
+                    </div>
+                    <div class="space-stats">
+                        <div class="listener-count">🟢 LIVE • 47 listening</div>
+                    </div>
+                </div>
+
+                <div class="voice-stage">
+                    <div class="stage-section">
+                        <div class="section-label">🎤 On Stage (Speaking)</div>
+                        <div class="speakers-grid">
+                            <div class="speaker-card host">
+                                <div class="speaker-avatar" data-avatar-user="CryptoNinja">C</div>
+                                <div class="speaker-info">
+                                    <div class="speaker-name username-link" onclick="goToProfile('CryptoNinja')">CryptoNinja</div>
+                                    <div class="speaker-badge">HOST</div>
+                                </div>
+                                <div class="audio-indicator active">
+                                    <span class="audio-wave"></span>
+                                    <span class="audio-wave"></span>
+                                    <span class="audio-wave"></span>
+                                </div>
+                            </div>
+
+                            <div class="speaker-card">
+                                <div class="speaker-avatar" data-avatar-user="AlphaGrinder">A</div>
+                                <div class="speaker-info">
+                                    <div class="speaker-name username-link" onclick="goToProfile('AlphaGrinder')">AlphaGrinder</div>
+                                    <div class="speaker-badge">SPEAKER</div>
+                                </div>
+                                <div class="audio-indicator">
+                                    <span class="audio-wave"></span>
+                                    <span class="audio-wave"></span>
+                                    <span class="audio-wave"></span>
+                                </div>
+                            </div>
+
+                            <div class="speaker-card">
+                                <div class="speaker-avatar" data-avatar-user="SolanaKing">S</div>
+                                <div class="speaker-info">
+                                    <div class="speaker-name username-link" onclick="goToProfile('SolanaKing')">SolanaKing</div>
+                                    <div class="speaker-badge">SPEAKER</div>
+                                </div>
+                                <div class="audio-indicator active">
+                                    <span class="audio-wave"></span>
+                                    <span class="audio-wave"></span>
+                                    <span class="audio-wave"></span>
+                                </div>
+                            </div>
+
+                            <div class="speaker-card">
+                                <div class="speaker-avatar" data-avatar-user="DeFiMaster">D</div>
+                                <div class="speaker-info">
+                                    <div class="speaker-name username-link" onclick="goToProfile('DeFiMaster')">DeFiMaster</div>
+                                    <div class="speaker-badge">SPEAKER</div>
+                                </div>
+                                <div class="audio-indicator">
+                                    <span class="audio-wave"></span>
+                                    <span class="audio-wave"></span>
+                                    <span class="audio-wave"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stage-section">
+                        <div class="section-label">👥 Listeners (43)</div>
+                        <div class="listeners-grid">
+                            <div class="listener-card">
+                                <div class="listener-avatar" data-avatar-user="MoonChaser">M</div>
+                                <div class="listener-name username-link" onclick="goToProfile('MoonChaser')">MoonChaser</div>
+                            </div>
+                            <div class="listener-card">
+                                <div class="listener-avatar" data-avatar-user="Web3Warrior">W</div>
+                                <div class="listener-name username-link" onclick="goToProfile('Web3Warrior')">Web3Warrior</div>
+                            </div>
+                            <div class="listener-card">
+                                <div class="listener-avatar" data-avatar-user="NFTCollector">N</div>
+                                <div class="listener-name username-link" onclick="goToProfile('NFTCollector')">NFTCollector</div>
+                            </div>
+                            <div class="listener-card">
+                                <div class="listener-avatar" data-avatar-user="TokenTrader">T</div>
+                                <div class="listener-name username-link" onclick="goToProfile('TokenTrader')">TokenTrader</div>
+                            </div>
+                            <div class="listener-card">
+                                <div class="listener-avatar" data-avatar-user="JohnDoe_Crypto">J</div>
+                                <div class="listener-name username-link" onclick="goToProfile('JohnDoe_Crypto')">JohnDoe_Crypto</div>
+                            </div>
+                            <div class="listener-card">
+                                <div class="listener-avatar">?</div>
+                                <div class="listener-name username-link" onclick="goToProfile('anon_user_23')">anon_user_23</div>
+                            </div>
+                            <div class="listener-card">
+                                <div class="listener-avatar">+</div>
+                                <div class="listener-name username-link" onclick="goToProfile()">+37 more</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="voice-controls">
+                    <button class="voice-control-btn join-btn" onclick="toggleMic()">
+                        <span class="control-icon">🎤</span>
+                        <span class="control-label">Request to Speak</span>
+                    </button>
+                    <button class="voice-control-btn leave-btn" onclick="leaveChat()">
+                        <span class="control-icon">🚪</span>
+                        <span class="control-label">Leave Chat</span>
+                    </button>
+                </div>
+
+                <div class="active-spaces-list">
+                    <h3 class="section-title">Other Active Voice Chats</h3>
+                    <div class="space-list">
+                        <div class="space-item">
+                            <div class="space-item-info">
+                                <div class="space-item-title">💰 Trading Strategies & Tips</div>
+                                <div class="space-item-host">Hosted by TokenMaster • 23 listening</div>
+                            </div>
+                            <button class="join-space-btn" onclick="joinVoiceChat(0)">Join</button>
+                        </div>
+
+                        <div class="space-item">
+                            <div class="space-item-info">
+                                <div class="space-item-title">🎮 GameFi Discussion</div>
+                                <div class="space-item-host">Hosted by Web3Gamer • 15 listening</div>
+                            </div>
+                            <button class="join-space-btn" onclick="joinVoiceChat(0)">Join</button>
+                        </div>
+
+                        <div class="space-item">
+                            <div class="space-item-info">
+                                <div class="space-item-title">📊 Market Analysis Live</div>
+                                <div class="space-item-host">Hosted by ChartPro • 31 listening</div>
+                            </div>
+                            <button class="join-space-btn" onclick="joinVoiceChat(0)">Join</button>
+                        </div>
+                    </div>
+
+                    <button class="create-space-btn" onclick="createVoiceChat()">
+                        <span style="font-size: 1.2em;">🎙️</span> Create New Voice Chat
+                    </button>
+                </div>
+            </div>
+        </div>

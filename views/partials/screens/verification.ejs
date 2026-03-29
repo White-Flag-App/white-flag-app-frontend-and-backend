@@ -1,0 +1,239 @@
+﻿        <!-- Verification Flow -->
+        <div id="verification" class="screen">
+            <div class="verification-container">
+                <!-- Hero Section -->
+                <div class="verification-hero">
+                    <div class="verification-badge-icon">
+                        <div class="badge-glow"></div>
+                        <span class="badge-emoji">✓</span>
+                    </div>
+                    <h1 class="verification-hero-title">Get Verified</h1>
+                    <p class="verification-hero-subtitle">Unlock full platform access and rewards eligibility</p>
+                </div>
+
+                <!-- Main Card -->
+                <div class="verification-card">
+                    <!-- Benefits Grid -->
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">⚡</div>
+                            <div class="benefit-title">Instant Verification</div>
+                            <div class="benefit-desc">Get verified in seconds</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🏆</div>
+                            <div class="benefit-title">Rewards Eligible</div>
+                            <div class="benefit-desc">Earn from monthly pool</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🔓</div>
+                            <div class="benefit-title">Full Access</div>
+                            <div class="benefit-desc">All platform features</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🛡️</div>
+                            <div class="benefit-title">Secure Payment</div>
+                            <div class="benefit-desc">Crypto-powered safety</div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Section -->
+                    <div class="verification-pricing">
+                        <div class="pricing-header">
+                            <div class="pricing-label">One-Time Fee</div>
+                            <div class="pricing-amount">
+                                <span class="price-currency">$</span>
+                                <span class="price-value">5</span>
+                                <span class="price-period">.00 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="fee-breakdown">
+                            <div class="fee-item">
+                                <div class="fee-icon">💰</div>
+                                <div class="fee-details">
+                                    <div class="fee-label">Platform Revenue</div>
+                                    <div class="fee-sublabel">Platform operations & development</div>
+                                </div>
+                                <div class="fee-value">$2.50</div>
+                            </div>
+                            <div class="fee-divider"></div>
+                            <div class="fee-item">
+                                <div class="fee-icon">🎁</div>
+                                <div class="fee-details">
+                                    <div class="fee-label">Rewards Pool</div>
+                                    <div class="fee-sublabel">Goes to monthly leaderboard winners</div>
+                                </div>
+                                <div class="fee-value">$2.50</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <button class="verify-btn" onclick="handleVerification()">
+                        <span class="btn-icon">🔐</span>
+                        <span class="btn-text">Connect Wallet & Verify</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+
+                    <!-- Trust Indicators -->
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <span class="trust-icon">🔒</span>
+                            <span class="trust-text">Secure</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">⚡</span>
+                            <span class="trust-text">Instant</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">🌐</span>
+                            <span class="trust-text">Multi-Chain</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Verify Section -->
+                <div class="why-verify-section">
+                    <h2 class="why-verify-title">Why Get Verified?</h2>
+                    <div class="why-verify-grid">
+                        <div class="why-item">
+                            <div class="why-number">01</div>
+                            <div class="why-content">
+                                <h3>Earn Real Money</h3>
+                                <p>Compete for your share of the monthly rewards pool distributed to top contributors</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-number">02</div>
+                            <div class="why-content">
+                                <h3>Unlock All Features</h3>
+                                <p>Access voice chats, advanced posting, and exclusive community features</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-number">03</div>
+                            <div class="why-content">
+                                <h3>Build Your Reputation</h3>
+                                <p>Stand out with your verified badge and gain trust in the community</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-number">04</div>
+                            <div class="why-content">
+                                <h3>Support the Platform</h3>
+                                <p>Your fee helps maintain and grow the platform while funding community rewards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Referral System -->
+                <div class="referral-section">
+                    <div class="referral-header">
+                        <div class="referral-icon">🎁</div>
+                        <h2 class="referral-title">Earn $1 Per Referral</h2>
+                        <p class="referral-subtitle">Share WhiteFlag and earn rewards for every verified signup</p>
+                    </div>
+
+                    <div class="referral-card">
+                        <!-- Earnings Display -->
+                        <div class="referral-earnings">
+                            <div class="earnings-label">Total Referral Earnings</div>
+                            <div class="earnings-amount">$24.00</div>
+                            <div class="earnings-breakdown">24 verified referrals × $1.00 each</div>
+                            <button class="claim-earnings-btn" onclick="claimReferralEarnings()">
+                                <span class="claim-icon">💰</span>
+                                <span>Claim Earnings</span>
+                            </button>
+                        </div>
+
+                        <!-- Referral Link -->
+                        <div class="referral-link-section">
+                            <label class="referral-label">Your Referral Link</label>
+                            <div class="referral-link-container">
+                                <input type="text" class="referral-link-input" id="referralLinkInput" value="https://whiteflag.app/ref/JohnDoe_Crypto" readonly>
+                                <button class="copy-link-btn" onclick="copyReferralLink()">
+                                    <span id="copyIcon">📋</span>
+                                    <span id="copyText">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Share Buttons -->
+                        <div class="referral-share-section">
+                            <div class="share-label">Share on Social Media</div>
+                            <div class="share-buttons">
+                                <button class="share-btn twitter" onclick="shareOnTwitter()">
+                                    <span class="share-icon">🐦</span>
+                                    <span>Twitter</span>
+                                </button>
+                                <button class="share-btn telegram" onclick="shareOnTelegram()">
+                                    <span class="share-icon">✈️</span>
+                                    <span>Telegram</span>
+                                </button>
+                                <button class="share-btn discord" onclick="shareOnDiscord()">
+                                    <span class="share-icon">💬</span>
+                                    <span>Discord</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- How It Works -->
+                        <div class="referral-how-it-works">
+                            <h3 class="how-it-works-title">How It Works</h3>
+                            <div class="referral-steps">
+                                <div class="referral-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Share Your Link</div>
+                                        <div class="step-desc">Send your unique referral link to friends</div>
+                                    </div>
+                                </div>
+                                <div class="referral-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">They Sign Up</div>
+                                        <div class="step-desc">New users create account via your link</div>
+                                    </div>
+                                </div>
+                                <div class="referral-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">They Get Verified</div>
+                                        <div class="step-desc">They pay $5 verification fee</div>
+                                    </div>
+                                </div>
+                                <div class="referral-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">You Earn $1</div>
+                                        <div class="step-desc">Get $1 credited to your account instantly</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Referral Stats -->
+                        <div class="referral-stats-grid">
+                            <div class="ref-stat-item">
+                                <div class="ref-stat-value">24</div>
+                                <div class="ref-stat-label">Total Referrals</div>
+                            </div>
+                            <div class="ref-stat-item">
+                                <div class="ref-stat-value">18</div>
+                                <div class="ref-stat-label">This Month</div>
+                            </div>
+                            <div class="ref-stat-item">
+                                <div class="ref-stat-value">$24</div>
+                                <div class="ref-stat-label">Total Earned</div>
+                            </div>
+                            <div class="ref-stat-item">
+                                <div class="ref-stat-value">$18</div>
+                                <div class="ref-stat-label">This Month</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

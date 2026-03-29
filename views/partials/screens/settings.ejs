@@ -1,0 +1,135 @@
+﻿        <!-- Settings (NEW) -->
+        <div id="settings" class="screen">
+            <div class="settings-container">
+                <div class="settings-header">
+                    <h1 class="settings-title">⚙️ Settings</h1>
+                </div>
+
+                <div class="settings-content">
+                    <!-- Account Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Account</div>
+                        <div class="settings-item" onclick="switchScreen('profile'); toggleProfileView('settings')">
+                            <div class="settings-item-icon">👤</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Edit Profile</div>
+                                <div class="settings-item-desc">Update your name, bio, and avatar</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+
+                        <div class="settings-item" onclick="disconnectWallet()">
+                            <div class="settings-item-icon">🔌</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Disconnect Wallet</div>
+                                <div class="settings-item-desc">Log out of your account</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Privacy & Safety</div>
+                        <div class="settings-item" onclick="showToast('Privacy settings coming soon')">
+                            <div class="settings-item-icon">🔒</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Privacy Settings</div>
+                                <div class="settings-item-desc">Control who can see your content</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+
+                        <div class="settings-item" onclick="switchScreen('profile'); document.getElementById('blockedUsersBtn').click();">
+                            <div class="settings-item-icon">🚫</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Blocked Users</div>
+                                <div class="settings-item-desc">Manage blocked accounts</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Notifications</div>
+                        <div class="settings-item">
+                            <div class="settings-item-icon">🔔</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Push Notifications</div>
+                                <div class="settings-item-desc">Get notified about new activity</div>
+                            </div>
+                            <label class="settings-toggle">
+                                <input type="checkbox" checked onchange="showToast('Notification preference saved')">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="settings-item">
+                            <div class="settings-item-icon">📧</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Email Notifications</div>
+                                <div class="settings-item-desc">Receive updates via email</div>
+                            </div>
+                            <label class="settings-toggle">
+                                <input type="checkbox" onchange="showToast('Email preference saved')">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preferences Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Preferences</div>
+                        <div class="settings-item" onclick="toggleTheme()">
+                            <div class="settings-item-icon">🌙</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Dark Mode</div>
+                                <div class="settings-item-desc">Toggle dark/light theme</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <!-- Data Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">Data & Storage</div>
+                        <div class="settings-item" onclick="switchScreen('profile'); alert('Transaction history: View all your earnings and claims');">
+                            <div class="settings-item-icon">💰</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Transaction History</div>
+                                <div class="settings-item-desc">View all transactions</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+
+                        <div class="settings-item" onclick="showToast('Data export coming soon')">
+                            <div class="settings-item-icon">📦</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">Export Data</div>
+                                <div class="settings-item-desc">Download your data</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+
+                    <!-- About Section -->
+                    <div class="settings-section">
+                        <div class="settings-section-title">About</div>
+                        <div class="settings-item" onclick="alert('WhiteFlag v1.0.0\n\nA Solana-powered social platform for crypto enthusiasts.\n\n© 2026 WhiteFlag')">
+                            <div class="settings-item-icon">ℹ️</div>
+                            <div class="settings-item-info">
+                                <div class="settings-item-label">About WhiteFlag</div>
+                                <div class="settings-item-desc">Version 1.0.0</div>
+                            </div>
+                            <div class="settings-item-arrow">→</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- BOOKMARKS SCREEN                                            -->
