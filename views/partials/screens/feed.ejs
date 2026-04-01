@@ -11,7 +11,40 @@
             </div>
 
             <div class="feed-container">
-                <div class="create-post">
+                <!-- Sort Buttons for Feed -->
+                <div class="posts-sort-header">
+                    <h3 class="posts-section-title">📰 Feed Posts</h3>
+                    <div class="posts-sort-buttons">
+                        <button class="post-sort-btn active" onclick="sortPosts('feed', 'recent')">
+                            <span class="sort-icon">🕐</span>
+                            <span>Recent</span>
+                        </button>
+                        <button class="post-sort-btn" onclick="sortPosts('feed', 'liked')">
+                            <span class="sort-icon">❤️</span>
+                            <span>Most Liked</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feed Posts - REDESIGNED TO MATCH PROFILE -->
+                <div class="profile-posts-grid" id="feedPostsGrid">
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Action Button for Create Post -->
+        <button class="fab-create-post" id="fabCreatePost" onclick="openCreatePostModal()" title="Create Post" aria-label="Create new post">
+            <span>✏️</span>
+        </button>
+
+        <!-- Create Post Modal (slide-up) -->
+        <div class="create-post-modal-overlay" id="createPostModalOverlay" onclick="handleCreatePostOverlayClick(event)">
+            <div class="create-post-modal" id="createPostModal">
+                <div class="create-post-modal-header">
+                    <div class="create-post-modal-title">✏️ Create Post</div>
+                    <button class="create-post-modal-close" onclick="closeCreatePostModal()" aria-label="Close">✕</button>
+                </div>
+                <div class="create-post-modal-body">
                     <div class="topic-selector">
                         <button class="topic-pick-btn" onclick="toggleTopicDropdown()">
                             <span class="topic-pick-icon">🪙</span>
@@ -48,25 +81,6 @@
                         <button class="post-btn" onclick="createPost()">Post</button>
                     </div>
                     <div id="mediaPreview" class="media-preview"></div>
-                </div>
-
-                <!-- Sort Buttons for Feed -->
-                <div class="posts-sort-header">
-                    <h3 class="posts-section-title">📰 Feed Posts</h3>
-                    <div class="posts-sort-buttons">
-                        <button class="post-sort-btn active" onclick="sortPosts('feed', 'recent')">
-                            <span class="sort-icon">🕐</span>
-                            <span>Recent</span>
-                        </button>
-                        <button class="post-sort-btn" onclick="sortPosts('feed', 'liked')">
-                            <span class="sort-icon">❤️</span>
-                            <span>Most Liked</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Feed Posts - REDESIGNED TO MATCH PROFILE -->
-                <div class="profile-posts-grid" id="feedPostsGrid">
                 </div>
             </div>
         </div>

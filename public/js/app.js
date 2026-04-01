@@ -4531,3 +4531,140 @@
 
             console.log('Private account:', isPrivateAccount);
         }
+
+        // ══════════════════════════════════════════════════════════
+        // CREATE POST MODAL (FAB)
+        // ══════════════════════════════════════════════════════════
+
+        function openCreatePostModal() {
+            var overlay = document.getElementById('createPostModalOverlay');
+            if (overlay) {
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                // Focus textarea after animation
+                setTimeout(function() {
+                    var ta = document.getElementById('postTextarea');
+                    if (ta) ta.focus();
+                }, 400);
+            }
+        }
+
+        function closeCreatePostModal() {
+            var overlay = document.getElementById('createPostModalOverlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function handleCreatePostOverlayClick(e) {
+            if (e.target === e.currentTarget) {
+                closeCreatePostModal();
+            }
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                var overlay = document.getElementById('createPostModalOverlay');
+                if (overlay && overlay.classList.contains('active')) {
+                    closeCreatePostModal();
+                }
+            }
+        });
+
+        // ══════════════════════════════════════════════════════════
+        // DEXSCREENER TICKER — Live Memecoin Feed (via server proxy)
+        // ══════════════════════════════════════════════════════════
+
+        var _tickerInterval = null;
+        var _tickerCache = null;
+
+        function formatTickerPrice(price) {
+            var n = parseFloat(price);
+            if (isNaN(n)) return '$0.00';
+            if (n >= 1000) return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+            if (n >= 1) return '$' + n.toFixed(2);
+            if (n >= 0.01) return '$' + n.toFixed(4);
+            return '$' + n.toFixed(6);
+        }
+
+        function renderTickerItems(tokens) {
+            var track = document.getElementById('tickerTrack');
+            if (!track) return;
+
+            var items = '';
+            tokens.forEach(function(t) {
+                var changeVal = parseFloat(t.priceChange || 0);
+                var changeClass = changeVal >= 0 ? 'positive' : 'negative';
+                var changeStr = (changeVal >= 0 ? '+' : '') + changeVal.toFixed(1) + '%';
+                var iconHtml = t.icon
+                    ? '<img class="ticker-icon" src="' + t.icon + '" alt="" onerror="this.style.display=\'none\'">'
+                    : '';
+                var linkOpen = t.url ? '<a href="' + t.url + '" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">' : '';
+                var linkClose = t.url ? '</a>' : '';
+                items += '<div class="ticker-item">'
+                    + linkOpen
+                    + iconHtml
+                    + '<span class="ticker-symbol">' + (t.symbol || '???') + '</span>'
+                    + '<span class="ticker-price">' + formatTickerPrice(t.price) + '</span>'
+                    + '<span class="ticker-change ' + changeClass + '">' + changeStr + '</span>'
+                    + linkClose
+                    + '</div>';
+            });
+            // Duplicate for seamless infinite scroll
+            track.innerHTML = items + items;
+            track.style.animation = 'none';
+            track.offsetHeight;
+            track.style.animation = '';
+        }
+
+        function showTickerLoading() {
+            var loading = document.getElementById('tickerLoading');
+            var error = document.getElementById('tickerError');
+            if (loading) loading.style.display = 'flex';
+            if (error) error.style.display = 'none';
+        }
+
+        function showTickerError() {
+            var track = document.getElementById('tickerTrack');
+            if (!track) return;
+            track.innerHTML =
+                '<div class="ticker-error">'
+                + '<span>\u26A0\uFE0F Failed to load token data</span>'
+                + '<button class="ticker-error-retry" onclick="fetchTickerData()">Retry</button>'
+                + '</div>';
+        }
+
+        async function fetchTickerData() {
+            showTickerLoading();
+            try {
+                var res = await fetch('/api/ticker');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                var tokens = await res.json();
+
+                if (tokens.error) throw new Error(tokens.error);
+                if (!Array.isArray(tokens) || tokens.length === 0) throw new Error('No tokens');
+
+                _tickerCache = tokens;
+                renderTickerItems(tokens);
+            } catch (err) {
+                console.error('Ticker fetch error:', err);
+                if (_tickerCache) {
+                    renderTickerItems(_tickerCache);
+                } else {
+                    showTickerError();
+                }
+            }
+        }
+
+        function startTickerPolling() {
+            fetchTickerData();
+            if (_tickerInterval) clearInterval(_tickerInterval);
+            _tickerInterval = setInterval(fetchTickerData, 20000);
+        }
+
+        // Start ticker on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            startTickerPolling();
+        });

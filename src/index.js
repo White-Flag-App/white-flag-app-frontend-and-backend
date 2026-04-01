@@ -23,6 +23,7 @@ const chatRoutes = require('./routes/chat');
 const voiceRoutes = require('./routes/voice');
 const verificationRoutes = require('./routes/verification');
 const notificationsRoutes = require('./routes/notifications');
+const tickerRoutes = require('./routes/ticker');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -48,7 +49,7 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "blob:", "https:"],
-      connectSrc: ["'self'", "https://tenor.googleapis.com", "https://white-flag-app-frontend-and-backend.onrender.com"],
+      connectSrc: ["'self'", "https://tenor.googleapis.com", "https://white-flag-app-frontend-and-backend.onrender.com", "https://api.dexscreener.com"],
     }
   }
 }));
@@ -95,6 +96,7 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/voice', voiceRoutes);
 app.use('/api/verification', verificationRoutes);
 app.use('/api/notifications', notificationsRoutes);
+app.use('/api/ticker', tickerRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
