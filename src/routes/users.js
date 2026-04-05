@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../config/database');
 const { authenticateToken, optionalAuth } = require('../middleware/auth');
+const { upload } = require('../middleware/upload');
+const { uploadToCloudinary } = require('../config/cloudinary');
 
 // ── Helper: format user row into consistent API response ──────────
 function formatUser(u, extras = {}) {
@@ -51,6 +53,37 @@ const USER_STATS_GROUP = `
 // ══════════════════════════════════════════════════════════════
 // ROUTES — static paths MUST come before /:id
 // ══════════════════════════════════════════════════════════════
+
+// POST /users/avatar  — upload profile picture via Cloudinary
+router.post('/avatar', authenticateToken, upload.single('avatar'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No image file provided' });
+    }
+
+    const userId = req.user.userId;
+
+    // Upload to Cloudinary
+    const result = await uploadToCloudinary(req.file.buffer, {
+      folder: 'whiteflag/avatars',
+      transformation: [
+        { width: 400, height: 400, crop: 'fill', gravity: 'face' },
+        { quality: 'auto', fetch_format: 'auto' }
+      ]
+    });
+
+    // Update user avatar_url in database
+    await pool.query(
+      'UPDATE users SET avatar_url = $1, updated_at = NOW() WHERE id = $2',
+      [result.secure_url, userId]
+    );
+
+    res.json({ avatarUrl: result.secure_url });
+  } catch (e) {
+    console.error('Avatar upload error:', e);
+    res.status(500).json({ error: 'Failed to upload avatar' });
+  }
+});
 
 // PUT /users/profile  — update current user's profile
 router.put('/profile', authenticateToken, async (req, res) => {
@@ -104,21 +137,8 @@ router.put('/profile', authenticateToken, async (req, res) => {
   } catch (e) { console.error(e); res.status(500).json({ error: 'Failed to update profile' }); }
 });
 
-// POST /users/verify  — mark current user as verified
-router.post('/verify', authenticateToken, async (req, res) => {
-  try {
-    const userId = req.user.userId;
-    await pool.query(
-      `UPDATE users SET is_verified=true, verification_date=NOW(), updated_at=NOW() WHERE id=$1`,
-      [userId]
-    );
-    const result = await pool.query(
-      USER_STATS_QUERY + ` WHERE u.id = $1 ` + USER_STATS_GROUP,
-      [userId]
-    );
-    res.json({ message: 'Verification successful', user: formatUser(result.rows[0]) });
-  } catch (e) { console.error(e); res.status(500).json({ error: 'Verification failed' }); }
-});
+// POST /users/verify — REMOVED: verification must go through /verification/verify with Solana payment proof
+// This endpoint was a security bypass allowing free verification without payment.
 
 // GET /users/search?q=term  — search users by username
 router.get('/search', optionalAuth, async (req, res) => {

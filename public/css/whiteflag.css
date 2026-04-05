@@ -5133,6 +5133,8 @@
         /* Claim Earnings Button */
         .claim-earnings-btn {
             margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: var(--dark);
             border: none;
@@ -5811,6 +5813,35 @@
 
             .referral-stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .referral-card {
+                padding: 20px;
+            }
+
+            .earnings-amount {
+                font-size: 2.2em;
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .verification-hero-title {
+                font-size: 1.6em;
+            }
+
+            .why-verify-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .referral-link-container {
+                flex-direction: column;
+            }
+
+            .copy-link-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
 
@@ -9118,6 +9149,49 @@
                 font-size: 0.82em;
             }
 
+            .leaderboard-header {
+                padding: 20px 16px;
+            }
+
+            .leaderboard-title {
+                font-size: 1.4em;
+            }
+
+            .leaderboard-meta {
+                gap: 16px;
+            }
+
+            .pool-info,
+            .total-competitors {
+                font-size: 1em;
+            }
+
+            .scoring-explanation {
+                padding: 16px;
+            }
+
+            .scoring-title {
+                font-size: 1.1em;
+            }
+
+            .leader-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9em;
+            }
+
+            .verification-container {
+                padding: 0 8px;
+            }
+
+            .verification-card {
+                padding: 20px;
+            }
+
+            .fee-breakdown {
+                padding: 16px;
+            }
+
             /* Modals */
             .modal-content {
                 margin: 10px;
@@ -9152,6 +9226,54 @@
             .speakers-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
+            }
+
+            .voice-controls {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .voice-control-btn {
+                min-width: 120px;
+                padding: 12px 16px;
+                font-size: 0.85em;
+            }
+
+            .voice-stage {
+                padding: 16px;
+            }
+
+            .listeners-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+            }
+
+            .active-spaces-list {
+                padding: 16px;
+            }
+
+            .space-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .join-space-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Messages */
+            .messages-search-section {
+                padding: 14px 16px;
+            }
+
+            .search-icon-large {
+                font-size: 1.8em;
+            }
+
+            .search-main-text {
+                font-size: 1em;
             }
 
             /* Ticker */
@@ -9253,6 +9375,31 @@
             .leaderboard-row {
                 grid-template-columns: 30px 1fr 60px;
                 font-size: 0.78em;
+            }
+
+            .estimated-payout {
+                display: none;
+            }
+
+            .table-header div:nth-child(4) {
+                display: none;
+            }
+
+            .pagination-numbers {
+                gap: 3px;
+            }
+
+            .pagination-btn,
+            .pagination-page {
+                min-width: 36px;
+                height: 36px;
+                padding: 6px 10px;
+                font-size: 0.9em;
+            }
+
+            .pagination-jump input {
+                width: 55px;
+                padding: 8px;
             }
 
             .speakers-grid {

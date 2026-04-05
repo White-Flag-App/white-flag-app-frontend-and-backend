@@ -148,10 +148,13 @@
             // Step 2: Sign the message with the wallet
             const signature = await signFn(message);
 
-            // Step 3: Verify with backend
+            // Step 3: Verify with backend (include referrer if present)
+            var referrer = getReferrerFromUrl();
+            var authBody = { walletAddress: address, signature, chain };
+            if (referrer) authBody.referrerId = referrer;
             const authResult = await api('/auth/verify', {
                 method: 'POST',
-                body: JSON.stringify({ walletAddress: address, signature, chain })
+                body: JSON.stringify(authBody)
             });
 
             // Step 4: Save auth token + user data
@@ -639,12 +642,15 @@
 
                 // Step 3: Verify with backend
                 showToast('🔍 Verifying payment…');
+                var verifyBody = {
+                    transactionSignature: txSignature,
+                    walletAddress
+                };
+                var referrer = getReferrerFromUrl();
+                if (referrer) verifyBody.referrerId = referrer;
                 await api('/verification/verify', {
                     method: 'POST',
-                    body: JSON.stringify({
-                        transactionSignature: txSignature,
-                        walletAddress
-                    })
+                    body: JSON.stringify(verifyBody)
                 });
 
                 // Success — update local state
@@ -1777,6 +1783,58 @@
         }
 
         // Referral System Functions
+
+        // Extract referrer from URL on page load
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var ref = params.get('ref');
+            if (ref) {
+                localStorage.setItem('wf_referrer', ref);
+            }
+        })();
+
+        function getReferrerFromUrl() {
+            return localStorage.getItem('wf_referrer') || '';
+        }
+
+        // Load real referral stats from API
+        async function loadReferralStats() {
+            try {
+                var data = await api('/verification/status');
+                if (!data) return;
+
+                var totalReferrals = parseInt(data.referral_count) || 0;
+                var totalEarned = parseFloat(data.total_earned) || 0;
+                var thisMonth = parseInt(data.referrals_this_month) || 0;
+                var earnedThisMonth = parseFloat(data.earned_this_month) || 0;
+
+                var earningsAmountEl = document.querySelector('.earnings-amount');
+                var earningsBreakdownEl = document.querySelector('.earnings-breakdown');
+                if (earningsAmountEl) earningsAmountEl.textContent = '$' + totalEarned.toFixed(2);
+                if (earningsBreakdownEl) earningsBreakdownEl.textContent = totalReferrals + ' verified referral' + (totalReferrals !== 1 ? 's' : '') + ' × $1.00 each';
+
+                var statValues = document.querySelectorAll('.ref-stat-value');
+                var statLabels = document.querySelectorAll('.ref-stat-label');
+                if (statValues.length >= 4) {
+                    statValues[0].textContent = totalReferrals;
+                    statValues[1].textContent = thisMonth;
+                    statValues[2].textContent = '$' + totalEarned.toFixed(0);
+                    statValues[3].textContent = '$' + earnedThisMonth.toFixed(0);
+                }
+            } catch (e) {
+                // Not logged in or API unavailable — leave defaults
+            }
+        }
+
+        // Set referral link based on current user
+        const WHITEFLAG_DOMAIN = 'https://whiteflag.app';
+        function updateReferralLink() {
+            var input = document.getElementById('referralLinkInput');
+            if (input && currentUser) {
+                input.value = WHITEFLAG_DOMAIN + '?ref=' + encodeURIComponent(currentUser);
+            }
+        }
+
         function copyReferralLink() {
             const input = document.getElementById('referralLinkInput');
             input.select();
@@ -1828,9 +1886,18 @@
         let walletConnectedForClaim = false;
         let connectedWalletAddress = '';
 
-        function claimReferralEarnings() {
+        async function claimReferralEarnings() {
             claimSource = 'referral';
-            claimAmount = 24.00;
+            try {
+                var data = await api('/verification/status');
+                claimAmount = parseFloat(data.total_earned) || 0;
+            } catch (e) {
+                claimAmount = 0;
+            }
+            if (claimAmount <= 0) {
+                showToast('No referral earnings to claim yet', 'error');
+                return;
+            }
             openClaimModal('Referral Earnings', claimAmount);
         }
 
@@ -2006,6 +2073,7 @@
                 id: String(c.id),
                 author: c.username || 'Unknown',
                 avatar: (c.username || '?')[0].toUpperCase(),
+                avatarUrl: c.avatar_url || null,
                 verified: !!c.is_verified,
                 time: c.created_at ? _timeAgo(c.created_at) : '',
                 text: c.content || '',
@@ -2049,6 +2117,9 @@
             const safeAuthor = escapeHtml(comment.author || '');
             const safeText = escapeHtml(comment.text || '');
             const preview = safeText.substring(0, 40);
+            const avatarInner = comment.avatarUrl
+                ? '<img src="' + escapeHtml(comment.avatarUrl) + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">'
+                : escapeHtml(comment.avatar || '?');
             return `
                 <div class="post-comment ${nestClass}"
                      data-comment-id="${comment.id}"
@@ -2056,10 +2127,10 @@
                      data-comment-preview="${preview}"
                      data-post-id="${postId}"
                      data-is-nested="${isNested}">
-                    <div class="comment-avatar ${avatarClass}">${escapeHtml(comment.avatar || '?')}</div>
+                    <div class="comment-avatar ${avatarClass}" data-profile-user="${safeAuthor}" style="cursor:pointer;">${avatarInner}</div>
                     <div class="comment-body">
                         <div class="comment-header">
-                            <span class="comment-username">${safeAuthor}</span>
+                            <span class="comment-username username-link" data-profile-user="${safeAuthor}" style="cursor:pointer;">${safeAuthor}</span>
                             ${comment.verified ? '<span class="verified-mini">✓</span>' : ''}
                             <span class="comment-time">${escapeHtml(comment.time || '')}</span>
                         </div>
@@ -2080,7 +2151,9 @@
             const data = postCommentData[postId];
 
             const storedUser = getStoredUser();
-            const myAvatar = storedUser?.username ? storedUser.username[0].toUpperCase() : '?';
+            const myAvatar = storedUser?.avatarUrl
+                ? '<img src="' + escapeHtml(storedUser.avatarUrl) + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">'
+                : (storedUser?.username ? storedUser.username[0].toUpperCase() : '?');
             const commentsHtml = (data && data.comments) ? data.comments.map(c => renderComment(c, postId, false)).join('') : '';
 
             section.innerHTML = commentsHtml + `
@@ -2315,6 +2388,15 @@
             if (screenName === 'chatroom' || screenName === 'chat') {
                 loadChatRoomMessages(activeChatRoomId);
             }
+            if (screenName === 'verification' && isLoggedIn) {
+                updateReferralLink();
+                loadReferralStats();
+            }
+
+            // Hide FAB on pages that don't need Create Post
+            var fab = document.getElementById('fabCreatePost');
+            var hideFabScreens = ['chatroom', 'chat', 'voicecall', 'verification', 'leaderboard', 'messages', 'conversation'];
+            if (fab) fab.style.display = hideFabScreens.includes(screenName) ? 'none' : '';
         }
 
         function filterByTopic(topicName) {
@@ -2662,19 +2744,52 @@
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
-            input.onchange = (e) => {
+            input.onchange = async (e) => {
                 const file = e.target.files[0];
                 if (file) {
                     if (file.size > 2 * 1024 * 1024) {
                         showToast('Image must be under 2MB', 'error');
                         return;
                     }
+
+                    // Show local preview immediately
                     const reader = new FileReader();
                     reader.onload = (event) => {
-                        profilePictureData = event.target.result;
-                        updateProfileAvatar(profilePictureData);
+                        updateProfileAvatar(event.target.result);
                     };
                     reader.readAsDataURL(file);
+
+                    // Upload to server via Cloudinary
+                    try {
+                        showToast('Uploading profile picture…');
+                        const formData = new FormData();
+                        formData.append('avatar', file);
+
+                        const token = localStorage.getItem('wf_token');
+                        const res = await fetch(API_BASE + '/users/avatar', {
+                            method: 'POST',
+                            headers: token ? { Authorization: 'Bearer ' + token } : {},
+                            body: formData
+                        });
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data.error || 'Upload failed');
+
+                        // Store the Cloudinary URL for saveProfile
+                        profilePictureData = data.avatarUrl;
+                        updateProfileAvatar(data.avatarUrl);
+
+                        // Update stored user immediately
+                        const user = getStoredUser();
+                        if (user) {
+                            user.avatarUrl = data.avatarUrl;
+                            localStorage.setItem('wf_user', JSON.stringify(user));
+                        }
+
+                        showToast('Profile picture uploaded ✅');
+                    } catch (err) {
+                        showToast(err.message || 'Failed to upload picture', 'error');
+                        profilePictureData = null;
+                    }
                 }
             };
             input.click();
@@ -2855,7 +2970,16 @@
             if (opts.showAuthor !== false && p.username) {
                 var currentUser = getStoredUser();
                 var isOwnPost = currentUser && (currentUser.id === p.user_id || currentUser.username === p.username);
-                authorHtml = '<span class="post-author username-link"'
+                var avatarHtml = '';
+                if (p.avatar_url) {
+                    avatarHtml = '<div class="post-author-avatar" data-profile-user="' + escapeHtml(p.username) + '"'
+                        + ' style="width:28px;height:28px;min-width:28px;border-radius:50%;background-image:url(' + escapeHtml(p.avatar_url) + ');background-size:cover;background-position:center;cursor:pointer;"></div>';
+                } else {
+                    avatarHtml = '<div class="post-author-avatar" data-profile-user="' + escapeHtml(p.username) + '"'
+                        + ' style="width:28px;height:28px;min-width:28px;border-radius:50%;background:var(--primary);color:#000;display:flex;align-items:center;justify-content:center;font-size:0.72em;font-weight:700;cursor:pointer;">'
+                        + escapeHtml((p.username || '?')[0].toUpperCase()) + '</div>';
+                }
+                authorHtml = avatarHtml + '<span class="post-author username-link"'
                     + ' data-profile-user="' + escapeHtml(p.username) + '"'
                     + ' style="font-size:0.82em;color:var(--text-secondary);'
                     + 'margin-right:6px;cursor:pointer;font-weight:600;">'
@@ -2934,7 +3058,7 @@
             return '<div class="profile-post-card" data-post-id="' + pid + '">'
                 + '<div class="profile-post-border-accent"></div>'
                 + '<div class="profile-post-content">'
-                + '<div class="profile-post-header">'
+                + '<div class="profile-post-header" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">'
                 + authorHtml
                 + followBtnHtml
                 + '<span class="profile-post-topic ' + _tClass(top) + '">&#x1FA99; ' + escapeHtml(tLbl) + '</span>'
@@ -3345,32 +3469,10 @@
         // ── Leaderboard Data & Pagination ────────────────────────────────────
         let currentPage = 1;
         const usersPerPage = 10;
-        let totalPages = 10;
+        let totalPages = 1;
 
-        // Mock fallback data (used when not logged in or API unavailable)
-        const leaderboardMockData = [
-            { rank: 1,  name: 'AlphaGrinder',   avatar: 'A', hours: 127, posts: 45,  comments: 234, likes: 892, score: 8450, payout: 486 },
-            { rank: 2,  name: 'SolanaKing',      avatar: 'S', hours: 118, posts: 52,  comments: 198, likes: 756, score: 7920, payout: 354 },
-            { rank: 3,  name: 'CryptoNinja',     avatar: 'C', hours: 105, posts: 67,  comments: 312, likes: 623, score: 7650, payout: 321 },
-            { rank: 4,  name: 'DeFiMaster',      avatar: 'D', hours: 98,  posts: 38,  comments: 267, likes: 534, score: 6890, payout: 273 },
-            { rank: 5,  name: 'MoonChaser',      avatar: 'M', hours: 94,  posts: 41,  comments: 189, likes: 712, score: 6340, payout: 234 },
-            { rank: 6,  name: 'Web3Warrior',     avatar: 'W', hours: 89,  posts: 56,  comments: 223, likes: 445, score: 5980, payout: 213 },
-            { rank: 7,  name: 'NFTCollector',    avatar: 'N', hours: 85,  posts: 29,  comments: 178, likes: 589, score: 5620, payout: 194 },
-            { rank: 8,  name: 'TokenTrader',     avatar: 'T', hours: 82,  posts: 33,  comments: 156, likes: 498, score: 5240, payout: 168 },
-            { rank: 9,  name: 'BlockchainBro',   avatar: 'B', hours: 79,  posts: 48,  comments: 201, likes: 402, score: 4980, payout: 152 },
-            { rank: 10, name: 'EthEnthusiast',   avatar: 'E', hours: 75,  posts: 31,  comments: 187, likes: 523, score: 4720, payout: 138 }
-        ];
-        // Pad to 100 entries for pagination demo
-        (function() {
-            const extras = ['DexMaster','YieldFarmer','GasOptimizer','SmartTrader','ChainHopper','StakeHolder','LiquidityPro','MetaMaven','RektWarrior','DiamondHands','ApeStrong','WhaleWatcher','HODLGang','FlipperKing','BearHunter','BullRunner','TrendRider','DayTraderZ','CryptoKing','CoinQueen'];
-            for (var i = 11; i <= 100; i++) {
-                var n = extras[(i-11) % extras.length];
-                leaderboardMockData.push({ rank: i, name: n, avatar: n[0], hours: Math.max(10, 75-Math.floor((i-10)*0.7)), posts: 10+Math.floor(Math.random()*30), comments: 50+Math.floor(Math.random()*100), likes: 100+Math.floor(Math.random()*300), score: Math.max(500, 4720-((i-10)*45)), payout: Math.max(5, 138-Math.floor((i-10)*1.3)) });
-            }
-        })();
-
-        // Live leaderboard data — populated by API, falls back to mock
-        var leaderboardData = leaderboardMockData.slice();
+        // Live leaderboard data — populated by API only (no mock/dummy data)
+        var leaderboardData = [];
 
         // Load leaderboard from API (called on screen switch)
         async function loadLeaderboard() {
@@ -3383,7 +3485,8 @@
                             rank:     parseInt(u.rank) || idx + 1,
                             name:     u.username,
                             avatar:   u.username[0].toUpperCase(),
-                            hours:    0,  // not tracked per-user in this schema yet
+                            avatarUrl: u.avatar_url || null,
+                            hours:    0,
                             posts:    u.posts_count    || 0,
                             comments: u.comments_count || 0,
                             likes:    u.upvotes_received || 0,
@@ -3391,32 +3494,46 @@
                             payout:   Math.floor((u.engagement_score || 0) / 20)
                         };
                     });
-                    totalPages = Math.ceil(leaderboardData.length / usersPerPage);
-                    renderLeaderboard(1);
+                } else {
+                    leaderboardData = [];
                 }
             } catch (e) {
-                // Backend unavailable — keep mock data already rendered
+                leaderboardData = [];
             }
+            totalPages = Math.max(1, Math.ceil(leaderboardData.length / usersPerPage));
+            renderLeaderboard(1);
         }
 
 
         function renderLeaderboard(page) {
+            const rowsContainer = document.getElementById('leaderboardRows');
+            rowsContainer.innerHTML = '';
+
+            if (leaderboardData.length === 0) {
+                rowsContainer.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text-secondary);"><div style="font-size:3em;margin-bottom:16px;">🏆</div><div style="font-size:1.1em;font-weight:700;margin-bottom:8px;">No Users Yet</div><div style="font-size:0.9em;color:var(--text-tertiary);">Be the first to get verified and start climbing the leaderboard!</div></div>';
+                updatePaginationControls(1);
+                return;
+            }
+
             const startIndex = (page - 1) * usersPerPage;
             const endIndex = startIndex + usersPerPage;
             const pageData = leaderboardData.slice(startIndex, endIndex);
 
-            const rowsContainer = document.getElementById('leaderboardRows');
-            rowsContainer.innerHTML = '';
-
             pageData.forEach(user => {
                 const rankClass = user.rank <= 3 ? `rank-${user.rank}` : '';
+                const avatarContent = user.avatarUrl
+                    ? '<img src="' + escapeHtml(user.avatarUrl) + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">'
+                    : (USER_AVATARS[user.name] ? '' : user.avatar);
+                const avatarStyle = user.avatarUrl
+                    ? ''
+                    : (USER_AVATARS[user.name] ? ' style="background-image:url(' + USER_AVATARS[user.name] + ');background-size:cover;background-position:center;"' : '');
                 const row = `
                     <div class="leaderboard-row">
                         <div class="rank ${rankClass}">#${user.rank}</div>
                         <div class="leader-user">
-                            <div class="leader-avatar" data-avatar-user="${user.name}">${USER_AVATARS[user.name] ? '' : user.avatar}</div>
+                            <div class="leader-avatar" data-avatar-user="${user.name}" data-profile-user="${user.name}" style="cursor:pointer;${user.avatarUrl ? '' : ''}"${avatarStyle}>${avatarContent}</div>
                             <div class="leader-info">
-                                <div class="leader-name username-link" onclick="goToProfile('" + user.name + "')">${user.name}</div>
+                                <div class="leader-name username-link" data-profile-user="${user.name}" style="cursor:pointer;">${user.name}</div>
                                 <div class="leader-stats">${user.hours}h • ${user.posts} posts • ${user.comments} comments • ${user.likes} likes</div>
                             </div>
                         </div>
@@ -3432,22 +3549,27 @@
 
         function updatePaginationControls(page) {
             currentPage = page;
+            var total = leaderboardData.length;
 
             // Update showing text
-            const start = (page - 1) * usersPerPage + 1;
-            const end = Math.min(page * usersPerPage, 100);
+            var start = total === 0 ? 0 : (page - 1) * usersPerPage + 1;
+            var end = Math.min(page * usersPerPage, total);
             document.getElementById('showingStart').textContent = start;
             document.getElementById('showingEnd').textContent = end;
-            document.getElementById('totalUsers').textContent = '100';
+            document.getElementById('totalUsers').textContent = total;
 
             // Update page input
             document.getElementById('pageJumpInput').value = page;
+            document.getElementById('pageJumpInput').max = totalPages;
 
             // Update button states
             document.getElementById('firstPageBtn').disabled = page === 1;
             document.getElementById('prevPageBtn').disabled = page === 1;
-            document.getElementById('nextPageBtn').disabled = page === totalPages;
-            document.getElementById('lastPageBtn').disabled = page === totalPages;
+            document.getElementById('nextPageBtn').disabled = page >= totalPages;
+            document.getElementById('lastPageBtn').disabled = page >= totalPages;
+
+            // Update last page button onclick
+            document.getElementById('lastPageBtn').setAttribute('onclick', 'goToPage(' + totalPages + ')');
 
             // Render page numbers
             renderPageNumbers(page);
@@ -3534,8 +3656,7 @@
 
         // Initialize leaderboard on page load
         document.addEventListener('DOMContentLoaded', function() {
-            renderLeaderboard(1);           // render mock data immediately
-            loadLeaderboard();              // then try to replace with live API data
+            loadLeaderboard();              // load live API data (renders empty state if none)
 
             // Load feed on startup
             loadFeed();
@@ -4339,8 +4460,10 @@
 
             var area = document.getElementById('chatMessagesArea');
             if (area) {
-                var pfpStyle = USER_AVATARS[myName] ? ' style="background-image:url(' + USER_AVATARS[myName] + ');background-size:cover;background-position:center;"' : '';
-                var initial  = USER_AVATARS[myName] ? '' : myName[0].toUpperCase();
+                var myAvatarUrl = storedUser && storedUser.avatarUrl;
+                var pfpStyle = myAvatarUrl ? ' style="background-image:url(' + myAvatarUrl + ');background-size:cover;background-position:center;"'
+                    : (USER_AVATARS[myName] ? ' style="background-image:url(' + USER_AVATARS[myName] + ');background-size:cover;background-position:center;"' : '');
+                var initial  = (myAvatarUrl || USER_AVATARS[myName]) ? '' : myName[0].toUpperCase();
 
                 var replyActive = document.getElementById('chatReplyActive');
                 var replyShown  = replyActive && replyActive.style.display !== 'none';
@@ -4661,7 +4784,7 @@
         function startTickerPolling() {
             fetchTickerData();
             if (_tickerInterval) clearInterval(_tickerInterval);
-            _tickerInterval = setInterval(fetchTickerData, 20000);
+            _tickerInterval = setInterval(fetchTickerData, 120000);
         }
 
         // Start ticker on DOM ready

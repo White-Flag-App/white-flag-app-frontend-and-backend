@@ -3,7 +3,8 @@
         // Central configuration for all API calls
         // ══════════════════════════════════════════════════════════
 
-        const API_BASE = 'https://white-flag-app-frontend-and-backend.onrender.com/api';
+        // Use relative path so it works in both local dev and production (Render)
+        const API_BASE = '/api';
 
         // ── Central authenticated fetch helper ─────────────────
         async function api(path, options = {}) {

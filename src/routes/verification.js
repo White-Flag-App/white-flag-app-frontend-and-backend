@@ -109,10 +109,11 @@ router.post('/verify', authenticateToken, async (req, res) => {
       [userId]
     );
 
-    // Process referral bonus if applicable
+    // Process referral bonus — use referrerId from request body or from user's referred_by field
     let referralResult = null;
-    if (referrerId) {
-      referralResult = await solana.processReferralBonus(referrerId, userId, pool);
+    const effectiveReferrerId = referrerId || user.rows[0].referred_by;
+    if (effectiveReferrerId) {
+      referralResult = await solana.processReferralBonus(effectiveReferrerId, userId, pool);
     }
 
     res.json({
@@ -141,7 +142,12 @@ router.get('/status', authenticateToken, async (req, res) => {
         is_verified,
         verification_date,
         (SELECT COUNT(*) FROM referrals WHERE referrer_id = $1) as referral_count,
-        (SELECT COUNT(*) FROM referrals WHERE referrer_id = $1 AND bonus_paid = true) as bonuses_earned
+        (SELECT COUNT(*) FROM referrals WHERE referrer_id = $1 AND bonus_paid = true) as bonuses_earned,
+        (SELECT COUNT(*) FROM referrals WHERE referrer_id = $1 AND bonus_paid = true) * ${parseFloat(process.env.REFERRAL_BONUS) || 1.00} as total_earned,
+        (SELECT COUNT(*) FROM referrals WHERE referrer_id = $1 AND bonus_paid = true 
+         AND created_at >= date_trunc('month', NOW())) as referrals_this_month,
+        (SELECT COUNT(*) FROM referrals WHERE referrer_id = $1 AND bonus_paid = true 
+         AND created_at >= date_trunc('month', NOW())) * ${parseFloat(process.env.REFERRAL_BONUS) || 1.00} as earned_this_month
       FROM users 
       WHERE id = $1`,
       [userId]

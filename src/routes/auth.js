@@ -144,7 +144,7 @@ router.get('/nonce/:walletAddress', async (req, res) => {
  */
 router.post('/verify', async (req, res) => {
   try {
-    const { walletAddress, signature } = req.body;
+    const { walletAddress, signature, referrerId } = req.body;
     if (!walletAddress || !signature) {
       return res.status(400).json({ error: 'walletAddress and signature required' });
     }
@@ -180,10 +180,27 @@ router.post('/verify', async (req, res) => {
       // New user — create with minimal data; frontend will prompt for profile setup
       isNewUser = true;
       const shortAddr = walletAddress.substring(0, 8);
+
+      // Validate referrer if provided (can be username or user ID)
+      let validReferrerId = null;
+      if (referrerId) {
+        const parsedId = parseInt(referrerId);
+        let refCheck;
+        if (!isNaN(parsedId)) {
+          refCheck = await pool.query('SELECT id FROM users WHERE id = $1', [parsedId]);
+        }
+        if (!refCheck || refCheck.rows.length === 0) {
+          refCheck = await pool.query('SELECT id FROM users WHERE username = $1', [referrerId]);
+        }
+        if (refCheck.rows.length > 0) {
+          validReferrerId = refCheck.rows[0].id;
+        }
+      }
+
       const result = await pool.query(
-        `INSERT INTO users (wallet_address, username, chain, is_profile_complete)
-         VALUES ($1, $2, $3, false) RETURNING *`,
-        [walletAddress, `user_${shortAddr}`, chain]
+        `INSERT INTO users (wallet_address, username, chain, is_profile_complete, referred_by)
+         VALUES ($1, $2, $3, false, $4) RETURNING *`,
+        [walletAddress, `user_${shortAddr}`, chain, validReferrerId]
       );
       user = result;
       await pool.query('INSERT INTO leaderboard_stats (user_id) VALUES ($1)', [result.rows[0].id]);

@@ -33,7 +33,7 @@ router.get('/', optionalAuth, async (req, res) => {
     const userIdx = params.length;
 
     const result = await pool.query(`
-      SELECT p.*, u.username, u.wallet_address, u.is_verified,
+      SELECT p.*, u.username, u.wallet_address, u.is_verified, u.avatar_url,
         COUNT(DISTINCT c.id)::int  AS comment_count,
         COUNT(DISTINCT up.id)::int AS upvote_count,
         COUNT(DISTINCT rp.id)::int AS repost_count
@@ -63,7 +63,7 @@ router.get('/following', authenticateToken, async (req, res) => {
     const userId = req.user.userId;
 
     const result = await pool.query(`
-      SELECT p.*, u.username, u.wallet_address, u.is_verified,
+      SELECT p.*, u.username, u.wallet_address, u.is_verified, u.avatar_url,
         COUNT(DISTINCT c.id)::int  AS comment_count,
         COUNT(DISTINCT up.id)::int AS upvote_count,
         COUNT(DISTINCT rp.id)::int AS repost_count,
@@ -98,7 +98,7 @@ router.get('/:id', optionalAuth, async (req, res) => {
     const userId = req.user?.userId;
     const params = userId ? [id, userId] : [id];
     const result = await pool.query(`
-      SELECT p.*, u.username, u.wallet_address, u.is_verified,
+      SELECT p.*, u.username, u.wallet_address, u.is_verified, u.avatar_url,
         COUNT(DISTINCT c.id)::int  AS comment_count,
         COUNT(DISTINCT up.id)::int AS upvote_count,
         COUNT(DISTINCT rp.id)::int AS repost_count
@@ -277,7 +277,7 @@ router.get('/:id/comments', async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query(`
-      SELECT c.*, u.username, u.wallet_address, u.is_verified,
+      SELECT c.*, u.username, u.wallet_address, u.is_verified, u.avatar_url,
              COUNT(cu.id)::int AS upvote_count
       FROM comments c
       JOIN users u ON c.user_id = u.id

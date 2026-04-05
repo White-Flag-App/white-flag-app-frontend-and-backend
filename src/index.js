@@ -49,7 +49,7 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "blob:", "https:"],
-      connectSrc: ["'self'", "https://tenor.googleapis.com", "https://white-flag-app-frontend-and-backend.onrender.com", "https://api.dexscreener.com"],
+      connectSrc: ["'self'", "https://tenor.googleapis.com", "https://api.coingecko.com", "https://api.dexscreener.com", "https://white-flag-app-frontend-and-backend.onrender.com"],
     }
   }
 }));

@@ -17,6 +17,7 @@ const createTables = async () => {
         chain VARCHAR(10) DEFAULT 'solana',
         is_verified BOOLEAN DEFAULT false,
         is_profile_complete BOOLEAN DEFAULT false,
+        referred_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
         verification_date TIMESTAMP,
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW()
@@ -208,6 +209,10 @@ const createTables = async () => {
 
       DO $$ BEGIN
         ALTER TABLE posts ADD COLUMN IF NOT EXISTS link_url VARCHAR(500);
+      EXCEPTION WHEN others THEN NULL; END $$;
+
+      DO $$ BEGIN
+        ALTER TABLE users ALTER COLUMN avatar_url TYPE TEXT;
       EXCEPTION WHEN others THEN NULL; END $$;
     `);
     console.log('✅ Migrations applied');

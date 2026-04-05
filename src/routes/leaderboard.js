@@ -23,6 +23,7 @@ router.get('/', optionalAuth, async (req, res) => {
         u.username,
         u.wallet_address,
         u.is_verified,
+        u.avatar_url,
         ls.engagement_score,
         ls.posts_count,
         ls.comments_count,
